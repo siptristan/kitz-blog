@@ -8,7 +8,11 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'bg-anak': "url('/assets/images/anak.png')"
+      }
+    },
   },
   plugins: [],
 }
