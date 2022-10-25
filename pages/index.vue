@@ -1,11 +1,9 @@
 <template>
   <div>
-    <Navbar />
     <div class="w-11/12 mx-auto mt-8">
       <div class="grid grid-cols-1 md:grid-cols-2  gap-4">
         <div class="">
           <img src="../assets/images/search_bg.png" class="w-full h-52 md:h-full rounded" alt="">
-
         </div>
         <div class="my-2 md:my-12">
           <div class="title text-3xl font-semibold">
@@ -245,17 +243,15 @@
           </div>
         </div>
       </div>
-
-
     </div>
     <div class="mt-10"></div>
-    <Footer />
   </div>
 </template>
 
 <script>
   export default {
-    name: 'IndexPage'
+    name: 'IndexPage',
+    layout: 'Layout'
   }
 
 </script>
