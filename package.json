@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@blowstack/ckeditor-nuxt": "^0.6.0",
+    "apexcharts": "^3.36.0",
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
     "vue": "^2.7.10",
