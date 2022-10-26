@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors:{
+        'dashboard': '#F3F2F3'
+      },
       backgroundImage: {
         'bg-anak': "url('/assets/images/anak.png')"
       }
