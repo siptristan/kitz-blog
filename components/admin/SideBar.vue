@@ -38,14 +38,9 @@
 
 </script>
 <style scoped>
-<<<<<<< HEAD
-.sidebar {
-    width: 18%;
-=======
   .sidebar {
     height: 100vh;
     overflow: hidden;
->>>>>>> 712821322c5f8fa33572974cd9be0f337f5a5d00
     background: #041721;
   }
 
