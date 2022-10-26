@@ -1,5 +1,5 @@
 <template>
-<div class="sidebar px-4 py-4">
+<div class="sidebar hidden lg:block px-4 py-4">
     <!-- <button class="btn btn-primary float-left" @click="closeSideNav">
         <h5>X</h5>
     </button> -->
