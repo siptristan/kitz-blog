@@ -1,5 +1,5 @@
 <template>
-<div class="sidebar px-4 py-4">
+<div class="sidebar h-full px-4 py-4">
     <!-- <button class="btn btn-primary float-left" @click="closeSideNav">
         <h5>X</h5>
     </button> -->
@@ -38,8 +38,6 @@ export default {
 <style scoped>
 .sidebar {
     width: 18%;
-    height: 100vh;
-    overflow: hidden;
     background: #041721;
 }
 </style>

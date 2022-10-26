@@ -1,7 +1,5 @@
 <template>
-    <div>
-    <apexchart width="400" type="area" :options="chartOptions" :series="series"></apexchart>
-    </div>
+    <apexchart height="100%" type="area" :options="chartOptions" :series="series"></apexchart>
 </template>
 <script>
 export default {
@@ -17,13 +15,13 @@ export default {
               toolbar: {
                 show: false
               },
-              height: 350,
-              type: 'area'
+              type: 'area',
+              background: '#FFFFF'
             },
             dataLabels: {
               enabled: true
             },
-            //labels: ['18 Okt', '19 Okt', '20 Okt', '21 Okt', '22 Okt', '23 Okt', '24 Okt'],
+            labels: ['18 Okt', '19 Okt', '20 Okt', '21 Okt', '22 Okt', '23 Okt', '24 Okt'],
             stroke: {
               curve: 'smooth'
             },
@@ -32,12 +30,13 @@ export default {
             },
             xaxis: {
               labels: {
-                show: false
+                show: true
               }
             },
             grid: {
               show: false
-            }
+            },
+            colors: ['#e0f5f9']
             // xaxis: {
             //   type: 'datetime',
             //   categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]

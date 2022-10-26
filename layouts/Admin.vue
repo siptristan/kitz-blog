@@ -1,7 +1,7 @@
 <template>
-<div id="pageAdmin" class="flex">
+<div id="pageAdmin" class="flex h-screen">
     <side-bar />
-    <div class="container px-4 py-4">
+    <div class="container h-full px-4 py-4">
         <Header />
         <Nuxt />
     </div>

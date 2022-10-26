@@ -15,7 +15,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com" },
-      { href: "https://fonts.googleapis.com/css2?family=Poppins&display=swap", rel: "stylesheet" }, 
+      { href: "https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap", rel: "stylesheet" }, 
     ]
   },
 
