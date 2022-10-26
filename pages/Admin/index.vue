@@ -1,5 +1,5 @@
 <template>
-<div id="pageAdmin">
+<div id="pageAdmin" class="w-11/12 mx-auto">
   <div class="flex justify-start mt-5">
     <div v-for="(item, i) in img" :key="i" class="w-fit h-fit px-4 py-4 mr-3 rounded-md bg-white">
       <Card :source="item.image" :desc="item.title"/>

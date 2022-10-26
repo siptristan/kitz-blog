@@ -1,7 +1,7 @@
 <template>
-<div id="pageAdmin" class="lg:flex bg-[#F3F2F3] w-full h-screen">
+<div id="pageAdmin" class="lg:flex bg-[#F3F2F3] w-full h-screen z-0">
     <side-bar />
-    <div class="container w-11/12 md:w-full mx-auto">
+    <div class="container w-full mx-auto">
         <Header />
         <Nuxt />
     </div>
