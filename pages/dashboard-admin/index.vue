@@ -41,28 +41,41 @@
         <ChartArea />
       </div>
     </div>
-    <div class="card-footer h-1/3 w-full rounded-3xl"></div>
+    <div class="card-footer h-1/3 w-full rounded-3xl px-10 py-10">
+      <div class="content-footer w-full h-full flex justify-start">
+        <div class="w-1/3 h-fit">
+          <h1 class="mb-8 text-xl"><b>Aktivitas Pada Blog</b></h1>
+          <p class="text-xs">Statistik <b>aktivitas user</b><br> ketika mengunjungi blog <br> anda</p>
+        </div>
+        <div class="w-2/3 h-full flex justify-start items-center">
+          <div v-for="(item, i) in img" :key="i">
+            <Card :desc="item.title" :source="item.image" :value="item.value" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-import { ChartArea } from '../index.js'
+import { ChartArea, Card } from '../index.js'
 export default {
-  layout: 'Admin',
+  layout: 'admin',
   components: {
-    ChartArea
+    ChartArea,
+    Card
   },
   data() {
     return {
       img: [
         {
-          title: 'Blog Terpublish',
-          value: 12,
-          image: 'check-circle.svg'
+          title: 'visitor minggu ini',
+          value: 37,
+          image: 'eye.svg'
         },
         {
-          title: 'Blog In Progress',
-          value: 2,
-          image: 'info.svg'
+          title: 'komentar blog',
+          value: 21,
+          image: 'edit-3.svg'
         },
       ]
     }
@@ -83,6 +96,6 @@ export default {
   background: #95CFD9
 }
 .card-footer {
-  background: rgb(245, 155, 30);
+  background: rgba(229, 186, 158, 0.896);
 }
 </style>

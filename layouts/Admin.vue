@@ -1,7 +1,7 @@
 <template>
 <div id="pageAdmin" class="lg:flex bg-[#F3F2F3] w-full h-screen z-0">
     <side-bar />
-    <div class="container w-full mx-auto">
+    <div class="container w-full mx-auto px-4 py-4">
         <Header />
         <Nuxt />
     </div>
@@ -15,11 +15,5 @@ export default {
         SideBar,
         Header
     },
-    data() {
-        return {
-        }
-    },
-    methods: {
-    }
 }
 </script>
