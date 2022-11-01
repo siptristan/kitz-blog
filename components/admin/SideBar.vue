@@ -13,10 +13,10 @@
       </div>
       <div class="w-full h-fit flex flex-col justify-center items-center">
         <button
-        id="dashboard"
-          class="rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
-          @mouseenter="mouseOver(1)"
-          @mouseout="mouseOut(1)"
+          id="dashboard"
+          class="nav-btn rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
+          @mouseenter="mouseOver(0)"
+          @mouseout="mouseOut(0)"
         >
           <nuxt-link to="/dashboard-admin"
             class="flex px-2 w-full h-full items-center transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
@@ -33,9 +33,9 @@
         </button>
         <button
         id="profile"
-          class="rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
-          @mouseenter="mouseOver(2)"
-          @mouseout="mouseOut(2)"
+          class="nav-btn rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
+          @mouseenter="mouseOver(1)"
+          @mouseout="mouseOut(1)"
         >
           <nuxt-link to="/dashboard-admin/profile"
             class="flex px-2 w-full h-full transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
@@ -52,11 +52,11 @@
         </button>
         <button
         id="manage"
-          class="rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
-          @mouseover="mouseOver(3)"
-          @mouseout="mouseOut(3)"
+          class="nav-btn rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
+          @mouseover="mouseOver(2)"
+          @mouseout="mouseOut(2)"
         >
-          <a href="#"
+          <nuxt-link to="/dashboard-admin/create-blog"
             class="flex px-2 w-full h-full transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
             <div class="flex justify-center items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -66,7 +66,7 @@
               </svg>
               Manage Blog
             </div>
-          </a>
+          </nuxt-link>
         </button>
       </div>
     </div>
@@ -75,13 +75,6 @@
 <script>
   export default {
     name: 'SideBar',
-    // props: {
-    //   status: {
-    //     type: Boolean,
-    //     required: true,
-    //     default: false
-    //   }
-    // },
     data() {
       return {
         showMenu: false,
@@ -96,24 +89,24 @@
         this.showMenu = !this.showMenu;
       },
       mouseOver(i) {
-        if (i == 1) {
+        if (i == 0) {
           this.dashboard = true
         }
-        if (i == 2) {
+        if (i == 1) {
           this.profile = true
         }
-        if (i == 3) {
+        if (i == 2) {
           this.manage = true
         }
       },
       mouseOut(i) {
-        if (i == 1) {
+        if (i == 0) {
           this.dashboard = false
         }
-        if (i == 2) {
+        if (i == 1) {
           this.profile = false
         }
-        if (i == 3) {
+        if (i == 2) {
           this.manage = false
         }
       }

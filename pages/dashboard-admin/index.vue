@@ -1,7 +1,7 @@
 <template>
-  <div class="container-home overflow-hidden">
-    <div class="container-home-content flex mt-5">
-      <div class="card-blog-status w-1/4 h-5/6 px-4 py-4 mr-5 rounded-3xl text-white">
+  <div class="container-home overflow-hidden py-5">
+    <div class="container-home-content flex py-5">
+      <div class="card-blog-status w-1/4 h-full px-4 py-4 mr-5 rounded-3xl text-white">
         <div class="card-head flex justify-between">
           <h1>Blog Status</h1>
           <div class="icon-more border border-sky-400 rounded-lg px-1">
@@ -36,16 +36,16 @@
           </div>
         </div>
       </div>
-      <div class="card-chart-area w-3/4 h-5/6 px-4 py-7 rounded-3xl bg-white">
+      <div class="card-chart-area w-3/4 h-full px-4 py-7 rounded-3xl bg-white">
         <p>Jumlah kunjungan pada blog</p>
         <ChartArea />
       </div>
     </div>
-    <div class="card-footer h-1/3 w-full rounded-3xl px-10 py-10">
+    <div class="card-footer w-full rounded-3xl px-10 py-10">
       <div class="content-footer w-full h-full flex justify-start">
         <div class="w-1/3 h-fit">
-          <h1 class="mb-8 text-xl"><b>Aktivitas Pada Blog</b></h1>
-          <p class="text-xs">Statistik <b>aktivitas user</b><br> ketika mengunjungi blog <br> anda</p>
+          <h1 class="mb-8 text-2xl"><b>Aktivitas Pada Blog</b></h1>
+          <p class="text-md">Statistik <b>aktivitas user</b><br> ketika mengunjungi blog <br> anda</p>
         </div>
         <div class="w-2/3 h-full flex justify-start items-center">
           <div v-for="(item, i) in img" :key="i">
@@ -77,6 +77,11 @@ export default {
           value: 21,
           image: 'edit-3.svg'
         },
+        {
+          title: 'Dibagikan',
+          value: 17,
+          image: 'share.svg'
+        },
       ]
     }
   }
@@ -84,10 +89,10 @@ export default {
 </script>
 <style scoped>
 .container-home {
-  height: 90% !important;
+  height: 95% !important;
 }
 .container-home-content {
-  height: 60% !important;
+  height: 58% !important;
 }
 .card-blog-status {
   background: #0F1322;
@@ -97,5 +102,6 @@ export default {
 }
 .card-footer {
   background: rgba(229, 186, 158, 0.896);
+  height: 40%;
 }
 </style>
