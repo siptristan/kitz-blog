@@ -25,8 +25,8 @@
             </client-only>
         </div>
         <div class="px-2 py-2 flex">
-            <button class="border-4 border-sky-500 rounded-xl mr-2 w-fit px-2" @click="blogPreview">save</button>
-            <button v-if="isSaved" class="border-4 border-sky-500 rounded-xl mr-2 w-fit px-2">
+            <button class="border-2 border-sky-500 rounded-lg mr-2 w-fit px-2" @click="blogPreview">save</button>
+            <button v-if="isSaved" class="border-sky-500 rounded-lg mr-2 w-fit px-2">
                 <nuxt-link to="/dashboard-admin/preview">preview</nuxt-link>
             </button>
         </div>
