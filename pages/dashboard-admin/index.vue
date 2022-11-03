@@ -1,7 +1,7 @@
 <template>
   <div class="container-home overflow-hidden py-5">
-    <div class="container-home-content flex py-5">
-      <div class="card-blog-status w-1/4 h-full px-4 py-4 mr-5 rounded-3xl text-white">
+    <div class="container-home-content md:flex py-5">
+      <div class="card-blog-status w-full mb-4 md:w-4/12 lg:w-1/4 h-full px-4 py-4 mr-5 rounded-3xl text-white">
         <div class="card-head flex justify-between">
           <h1>Blog Status</h1>
           <div class="icon-more border border-sky-400 rounded-lg px-1">
@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="card-body mt-4">
-          <div class="content flex justify-center items-center mt-12">
+          <div class="content flex justify-center items-center">
             <div class="text-center">
               <p class="text-4xl">15</p>
               <p class="text-xs font-normal">published</p>
@@ -36,18 +36,19 @@
           </div>
         </div>
       </div>
-      <div class="card-chart-area w-3/4 h-full px-4 py-7 rounded-3xl bg-white">
+      <div class="card-chart-area w-full md:w-8/12 lg:w-3/4 h-full px-4 py-7 rounded-3xl bg-white">
         <p>Jumlah kunjungan pada blog</p>
         <ChartArea />
       </div>
     </div>
+
     <div class="card-footer w-full rounded-3xl px-10 py-10">
-      <div class="content-footer w-full h-full flex justify-start">
-        <div class="w-1/3 h-fit">
+      <div class="content-footer w-full h-full md:flex justify-start">
+        <div class="w-full md:w-1/3 h-fit">
           <h1 class="mb-8 text-2xl"><b>Aktivitas Pada Blog</b></h1>
           <p class="text-md">Statistik <b>aktivitas user</b><br> ketika mengunjungi blog <br> anda</p>
         </div>
-        <div class="w-2/3 h-full flex justify-start items-center">
+        <div class="w-full md:w-2/3 h-full md:flex md:justify-start items-center">
           <div v-for="(item, i) in img" :key="i">
             <Card :desc="item.title" :source="item.image" :value="item.value" />
           </div>
@@ -59,7 +60,7 @@
 <script>
 import { ChartArea, Card } from '../index.js'
 export default {
-  layout: 'admin',
+  layout: 'Admin',
   components: {
     ChartArea,
     Card

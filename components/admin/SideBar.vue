@@ -51,6 +51,24 @@
           </nuxt-link>
         </button>
         <button
+        id="article"
+          class="nav-btn rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
+          @mouseover="mouseOver(2)"
+          @mouseout="mouseOut(2)"
+        >
+          <nuxt-link to="#"
+            class="flex px-2 w-full h-full transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
+            <div class="flex justify-center items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+              </svg>
+              Article/Blog
+            </div>
+          </nuxt-link>
+        </button>
+
+
+        <button
         id="manage"
           class="nav-btn rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
           @mouseover="mouseOver(2)"
@@ -68,6 +86,7 @@
             </div>
           </nuxt-link>
         </button>
+        
       </div>
     </div>
   </div>
@@ -80,6 +99,7 @@
         showMenu: false,
         dashboard: false,
         profile: false,
+        article: false,
         manage: false,
         active: false
       }
@@ -95,7 +115,10 @@
         if (i == 1) {
           this.profile = true
         }
-        if (i == 2) {
+        if(i == 2 ){
+          this.article = true
+        }
+        if (i == 3) {
           this.manage = true
         }
       },
@@ -106,7 +129,10 @@
         if (i == 1) {
           this.profile = false
         }
-        if (i == 2) {
+        if(i == 2){
+          this.article = false
+        }
+        if (i == 3) {
           this.manage = false
         }
       }
