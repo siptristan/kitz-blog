@@ -60,7 +60,7 @@
 <script>
 import { ChartArea, Card } from '../index.js'
 export default {
-  layout: 'Admin',
+  layout: 'admin',
   components: {
     ChartArea,
     Card
