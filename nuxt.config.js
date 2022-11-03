@@ -32,6 +32,7 @@ export default {
   plugins: [
     { src : '@/plugins/vue-apexchart.js', ssr : false },
     { src: '~/plugins/vuex-persist.js', ssr: false },
+    { src: '~/plugins/ckeditor.js', mode: 'client', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
