@@ -16,6 +16,10 @@ export default {
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com" },
       { href: "https://fonts.googleapis.com/css2?family=Inter&family=Poppins&display=swap", rel: "stylesheet" }, 
+      { href: "https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css", rel: "stylesheet" }, 
+    ],
+    script: [
+      { src: 'https://unpkg.com/flowbite@1.5.3/dist/flowbite.js' }
     ]
   },
 
@@ -27,6 +31,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src : '@/plugins/vue-apexchart.js', ssr : false },
+    { src: '~/plugins/vuex-persist.js', ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

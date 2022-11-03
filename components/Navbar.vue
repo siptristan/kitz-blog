@@ -12,7 +12,7 @@
         <NuxtLink to="/"><a href="#" class="text-base mx-6 hover:text-blue-500">Home</a></NuxtLink>
         <NuxtLink to="/physician"> <a href="#" class="text-base mx-6 hover:text-blue-500">Physician</a></NuxtLink>
         <NuxtLink to="/blog"><a href="#" class="text-base mx-6 hover:text-blue-500">Blog</a></NuxtLink>
-        <NuxtLink to="/about"><a href="#" class="text-base mx-6 hover:text-blue-500">About</a></NuxtLink>
+        <NuxtLink to="/"><a href="#" class="text-base mx-6 hover:text-blue-500">About</a></NuxtLink>
       </div>
     </div>
 
@@ -59,7 +59,7 @@
 									hover:text-blue-500
 								">Blog</a>
               </NuxtLink>
-              <NuxtLink to="/about">
+              <NuxtLink to="/">
                 <a href="#" class="
 									block
 									py-4
