@@ -66,7 +66,7 @@ import {
   Card 
   } from '../index.js'
 export default {
-  layout: 'admin',
+  layout: 'Admin',
   components: {
     // ChartArea,
     VueApexCharts: () => import('vue-apexcharts'),
