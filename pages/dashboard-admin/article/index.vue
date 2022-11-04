@@ -66,7 +66,7 @@
 <script>
   export default {
     name: "AdminBlogIndex",
-    layout: "admin",
+    layout: "Admin",
   }
 
 </script>
