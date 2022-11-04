@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Sidebar Web View -->
-    <div class="sidebar hidden lg:block px-4 py-4">
+    <div class="sidebar hidden h-full lg:block px-4 py-4">
       <div class="flex justify-center w-full">
         <img src="../../assets/images/logo2.png" class="w-4/6 h-fit mb-4" alt="">
       </div>
@@ -114,7 +114,6 @@
 </script>
 <style scoped>
   .sidebar {
-    height: 100vh;
     overflow: hidden;
     background: #FFFF;
     font-family: 'Inter', sans-serif;

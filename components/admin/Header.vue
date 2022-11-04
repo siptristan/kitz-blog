@@ -76,7 +76,7 @@
           @mouseover="mouseOver(2)"
           @mouseout="mouseOut(2)"
         >
-          <nuxt-link to="/dashboard-admin/create-blog"
+          <nuxt-link to="/dashboard-admin/article/create-blog"
             class="flex px-2 w-full h-full transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
             <div class="flex justify-center items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"

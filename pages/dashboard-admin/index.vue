@@ -38,7 +38,9 @@
       </div>
       <div class="card-chart-area w-full md:w-8/12 lg:w-3/4 h-full px-4 py-7 rounded-3xl bg-white">
         <p>Jumlah kunjungan pada blog</p>
-        <apexchart height="100%" type="area" :options="chartOptions" :series="series"></apexchart>
+        <client-only>
+          <VueApexCharts width ="100%" height="100%" type="area" :options="chartOptions" :series="series"></VueApexCharts>
+        </client-only>
         <!-- <ChartArea /> -->
       </div>
     </div>
@@ -67,6 +69,7 @@ export default {
   layout: 'admin',
   components: {
     // ChartArea,
+    VueApexCharts: () => import('vue-apexcharts'),
     Card
   },
   data() {
