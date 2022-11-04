@@ -1,7 +1,7 @@
 <template>
   <nav class="bg-white w-full h-16">
     <div class="flex w-10/12 place-content-between mx-auto pt-3">
-      <NuxtLink to="/"><img src="../assets/images/logo.png" class="w-11 mt-2" alt=""></NuxtLink>
+      <nuxt-link to="/"><img src="../assets/images/logo.png" class="w-11 mt-2" alt=""></nuxt-link>
 
       <button class="block lg:hidden" type="button">
         <img src="../assets/icons/menu-button.svg" v-on:click="toggleNavbar()" alt="" />
@@ -9,10 +9,10 @@
       </button>
       <!-- Menu Web View -->
       <div class="menu hidden md:block mt-2">
-        <NuxtLink to="/"><a href="#" class="text-base mx-6 hover:text-blue-500">Home</a></NuxtLink>
-        <NuxtLink to="/physician"> <a href="#" class="text-base mx-6 hover:text-blue-500">Physician</a></NuxtLink>
-        <NuxtLink to="/blog"><a href="#" class="text-base mx-6 hover:text-blue-500">Blog</a></NuxtLink>
-        <NuxtLink to="/"><a href="#" class="text-base mx-6 hover:text-blue-500">About</a></NuxtLink>
+        <nuxt-link class="text-base mx-6 hover:text-blue-500" to="/">Home</nuxt-link>
+        <nuxt-link class="text-base mx-6 hover:text-blue-500" to="/physician"> Physician</nuxt-link>
+        <nuxt-link class="text-base mx-6 hover:text-blue-500" to="/blog">Blog</nuxt-link>
+        <nuxt-link class="text-base mx-6 hover:text-blue-500" to="/">About</nuxt-link>
       </div>
     </div>
 
@@ -29,51 +29,50 @@
           </div>
           <div class="lg:flex lg:flex-grow items-center">
             <div class="flex flex-col py-4 lg:py-0">
-              <NuxtLink to="/">
-                <a href="#" class="
+              <nuxt-link class="
 									block
 									py-4
 									px-5
 									text-white
 									font-semibold
 									hover:text-blue-500
-								">Home</a>
-              </NuxtLink>
-              <NuxtLink to="/physician">
-                <a href="#" class="
+								" 
+                to="/">
+                Home
+              </nuxt-link>
+              <nuxt-link class="
 									block
 									py-4
 									px-5
 									text-white
 									font-semibold
 									hover:text-blue-500
-								">Physician</a>
-              </NuxtLink>
-              <NuxtLink to="/blog">
-                <a href="#" class="
+								" 
+                to="/physician">
+                Physician
+              </nuxt-link>
+              <nuxt-link class="
 									block
 									py-4
 									px-5
 									text-white
 									font-semibold
 									hover:text-blue-500
-								">Blog</a>
-              </NuxtLink>
-              <NuxtLink to="/">
-                <a href="#" class="
+								" 
+                to="/blog">
+                Blog
+              </nuxt-link>
+              <nuxt-link class="
 									block
 									py-4
 									px-5
 									text-white
 									font-semibold
 									hover:text-blue-500
-								">About</a>
-              </NuxtLink>
-
-
-
-
-
+								" 
+                to="/">
+                About
+              </nuxt-link>
             </div>
           </div>
         </div>

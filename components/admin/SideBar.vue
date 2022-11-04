@@ -77,7 +77,6 @@
         showMenu: false,
         dashboard: false,
         article: false,
-        manage: false,
         active: false
       }
     },
