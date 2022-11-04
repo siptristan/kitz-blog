@@ -125,7 +125,7 @@
 // import { ckeditorVue } from '../index.js'
 //import { mapMutations } from 'vuex'
 export default {
-    layout: 'admin',
+    layout: 'Admin',
     components: {
         // ckeditorVue
     },

@@ -95,7 +95,7 @@
 <script>
   export default {
     name: 'DetailPagePreview',
-    layout: 'admin',
+    layout: 'Admin',
     computed: {
         items () {
             return this.$store.state.blog.items
