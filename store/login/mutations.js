@@ -4,6 +4,10 @@ export default {
     },
     setUser(state, data) {
         state.userData = data
+    },
+    singOut(state) {
+      state.isLoggedIn = false
+      state.userData = {}
     }
   }
   

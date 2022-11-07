@@ -10,9 +10,9 @@
 
       <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class="flex">
         <div class="rounded-full w-6 h-6 p-1 mt-1 mr-2 border-2 border-green-400">
-          <img src="../../assets/images/user-head.svg" class="w-fit h-fit mr-2" alt="">
+          <img :src="user.PhotoUrl" class="w-fit h-fit mr-2" alt="">
         </div>
-        <p class="mt-1">Admin</p>
+        <p class="mt-1">{{ user.FullName }}</p>
         <div class="mt-2">
           <svg class="w-4 h-4 mx-1.5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +57,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" />
               </svg>
             </div>
-            <a href="#"
+            <a href="javascript:void(0)"
+            @click="singout"
               class="block py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
               out</a>
           </div>
@@ -76,9 +77,9 @@
       </div>
       <div class="flex flex-col justify-center items-center w-full h-48">
         <div class="profile w-fit h-fit rounded-full border-sky-400 border-2 px-1 py-1">
-          <img src="../../assets/images/profile.jpg" class="w-20 h-20 rounded-full" alt="">
+          <img :src="user.PhotoUrl" class="w-20 h-20 rounded-full" alt="">
         </div>
-        <p class="font-bold text-slate-600 antialiased mt-2">Admin blog</p>
+        <p class="font-bold text-slate-600 antialiased mt-2">{{ user.FullName }}</p>
       </div>
       <div class="w-full h-fit flex flex-col justify-center items-center">
         <button id="dashboard"
@@ -148,6 +149,11 @@
         active: false
       }
     },
+    computed: {
+      user () {
+        return this.$store.state.login.userData
+      },
+    },
     methods: {
       toggleNavbar: function () {
         this.showMenu = !this.showMenu;
@@ -173,6 +179,9 @@
         if (i == 2) {
           this.manage = false
         }
+      },
+      singout() {
+        this.$store.dispatch('login/singOut')
       }
     }
   }

@@ -72,11 +72,11 @@ export default {
     VueApexCharts: () => import('vue-apexcharts'),
     Card
   },
-  mounted() {
+  created() {
     const login = this.$store.state.login.isLoggedIn
     console.log(login)
     if (login == false) {
-      this.$router.replace({ path: '/dashboard-admin/login' })
+      this.$router.replace({ path: '/dashboard-admin/signin' })
     }
   },
   data() {

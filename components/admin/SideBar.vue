@@ -7,9 +7,10 @@
       </div>
       <div class="flex flex-col justify-center items-center w-full h-48">
         <div class="profile w-fit h-fit rounded-full border-sky-400 border-2 px-1 py-1">
-          <img src="../../assets/images/profile.jpg" class="w-20 h-20 rounded-full" alt="">
+          <img v-if="user.PhotoUrl != null || user.PhotoUrl != ''" :src="user.PhotoUrl" class="w-20 h-20 rounded-full" alt="">
+          <img v-else src="../../assets/images/profile.jpg" class="w-20 h-20 rounded-full" alt="">
         </div>
-        <p class="font-bold text-slate-600 antialiased mt-2">Admin blog</p>
+        <p class="font-bold text-slate-600 antialiased mt-2">{{ user.FullName }}</p>
       </div>
       <div class="w-full h-fit flex flex-col justify-center items-center">
         <button
@@ -60,6 +61,11 @@
         dashboard: false,
         article: false,
         active: false
+      }
+    },
+    computed: {
+      user () {
+        return this.$store.state.login.userData
       }
     },
     methods: {
