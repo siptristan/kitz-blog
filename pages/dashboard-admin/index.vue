@@ -138,7 +138,7 @@ export default {
 </script>
 <style scoped>
 .container-home {
-  height: 95% !important;
+  height: 90% !important;
 }
 .container-home-content {
   height: 58% !important;

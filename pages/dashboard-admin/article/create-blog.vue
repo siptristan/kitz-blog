@@ -25,6 +25,43 @@
         <div class="lg:w-4/12 w-full relative">
             <div class="w-full h-fit flex lg:flex-col md:flex-row md:justify-between justify-center items-center lg:px-5 lg:sticky">
                 <div class="lg:w-10/12 md:w-5/12 sm:w-full h-48 bg-white rounded-md mb-3">
+                    <div class="w-full h-12 px-3 py-3"><p class="text-md">Categories</p></div>
+                    <hr>
+                    <div class="h-24 px-3 py-3 overflow-auto">
+                        <div class="flex items-center mb-4">
+                            <input id="category-1" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tips Kesehatan</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="category-2" type="checkbox" value="2" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Obat-obatan</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="category-3" type="checkbox" value="3" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Penyakit</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="category-4" type="checkbox" value="4" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-4" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pengobatan Alternatif</label>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <input id="category-5" type="checkbox" value="5" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-5" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Alat Kesehatan</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="w-full h-12 bg-slate-200 flex justify-between items-center px-3">
+                        <button @click="openModalCategory" class="w-fit h-fit rounded-md bg-blue-500 text-sm px-2 py-2 text-white">Add new categories</button>
+                    </div>
+                </div>
+                <div class="lg:w-10/12 md:w-5/12 sm:w-full h-48 bg-white rounded-md mb-3">
+                    <div class="w-full h-1/4 px-3 py-3"><p class="text-md">Thumbnail</p></div>
+                    <hr>
+                    <div class="h-3/4 px-2 py-2 flex justify-center items-center">
+                        <button @click="openModalThumb" :class="`${imgName == '' ? '' : 'bg-transparent'}w-fit h-fit rounded-md bg-blue-500 text-sm px-2 py-2 text-white`" type="button">{{ imgName == '' ? 'Add Thumbnail Image' : imgName }}</button>
+                    </div>
+                </div>
+                <div class="lg:w-10/12 md:w-5/12 sm:w-full h-48 bg-white rounded-md mb-3">
                     <div class="w-full h-12 px-3 py-3"><p class="text-md">Publish</p></div>
                     <hr>
                     <div class="h-24 px-3 py-3">
@@ -44,46 +81,10 @@
                         <button :class="`${ drafted == false ? '' : 'hidden '}w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white`" @click="draft">Draft</button>
                     </div>
                 </div>
-                <div class="lg:w-10/12 md:w-5/12 sm:w-full h-48 bg-white rounded-md mb-3">
-                    <div class="w-full h-12 px-3 py-3"><p class="text-md">Categories</p></div>
-                    <hr>
-                    <div class="h-24 px-3 py-3 overflow-auto">
-                        <div class="flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tips Kesehatan</label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Obat-obatan</label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Penyakit</label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pengobatan Alternatif</label>
-                        </div>
-                        <div class="flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Alat Kesehatan</label>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="w-full h-12 bg-slate-200 flex justify-between items-center px-3">
-                        <button class="w-fit h-fit rounded-md bg-blue-500 text-sm px-2 py-2 text-white">Add new categories</button>
-                    </div>
-                </div>
-                <div class="lg:w-10/12 md:w-5/12 sm:w-full h-48 bg-white rounded-md mb-3">
-                    <div class="w-full h-1/4 px-3 py-3"><p class="text-md">Thumbnail</p></div>
-                    <hr>
-                    <div class="h-3/4 px-3 py-3 flex justify-center items-center">
-                        <button class="w-fit h-fit rounded-md bg-blue-500 text-sm px-2 py-2 text-white" type="button" data-modal-toggle="defaultModal">Add Thumbnail Image</button>
-                    </div>
-                </div>
             </div>
-            <!-- Main modal -->
-            <div id="defaultModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+            <!-- Thumbnail modal -->
+            <div id="thumbModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+                <div class="absolute w-full h-full bg-slate-500 opacity-25"></div>
                 <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -92,7 +93,7 @@
                             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                 Choose Image
                             </h3>
-                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
+                            <button @click="closeModalThumb" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                                 <span class="sr-only">Close modal</span>
                             </button>
@@ -112,8 +113,41 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                            <button data-modal-toggle="defaultModal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
-                            <button data-modal-toggle="defaultModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+                            <button @click="closeModalThumb" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+                            <button @click="closeModalThumb" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Category modal -->
+            <div id="categoryModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full">
+                <div class="absolute w-full h-full bg-slate-500 opacity-25"></div>
+                <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
+                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                Add New Category
+                            </h3>
+                            <button @click="closeModalCategory" type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-6">
+                            <div class="flex justify-start">
+                                <div>
+                                    <label for="category" class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300">Name</label>
+                                    <input type="text" v-model="category" id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
+                            <button @click="closeModalCategory" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+                            <button @click="closeModalCategory" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -140,11 +174,18 @@ export default {
             isSaved: false,
             drafted: true,
             published: false,
+            imgName: '',
             title: '',
             imgBase64: '',
+            category: '',
+            categoryID: 0,
             editorData: '<p>Content of the editor.</p>',
             editorConfig: {
-                readOnly: false
+                readOnly: false,
+                image2_maxSize: {
+                    height: 300,
+                    width: 250
+                }
             }
         }
     },
@@ -168,6 +209,7 @@ export default {
                 newImage.src = srcData;
             }
             reader.readAsDataURL(file);
+            this.imgName = file.name
             this.imgData = true;
         },
         save() {
@@ -194,6 +236,22 @@ export default {
                     let thumb = document.getElementById('thumbnail')
                     title.setAttribute('disabled', true)
                     thumb.setAttribute('disabled', true)
+
+                    const data = {
+                        Title: this.title,
+                        Content: this.editorData,
+                        publish: this.published,
+                        MainPicture: null,
+                        CategoryID: 1
+                    }
+                    document.getElementById('preview').src = ''
+                    this.$store.dispatch('blog/save', data)
+                    // this.$swal({
+                    //     title: 'are you sure ?',
+                    //     text: 'Do you want to continue',
+                    //     icon: 'question',
+                    //     confirmButtonText: 'Cool'
+                    // })
                 }
             })
         },
@@ -213,6 +271,46 @@ export default {
                     thumb.removeAttribute('disabled')
                 }
             })
+        },
+        openModalThumb() {
+            const modal = document.getElementById('thumbModal')
+            modal.classList.remove('hidden')
+            modal.classList.add('justify-center')
+            modal.classList.add('items-center')
+            modal.classList.add('flex')
+            modal.removeAttribute('aria-hidden')
+            modal.setAttribute('aria-modal', true)
+            modal.setAttribute('role', 'dialog')
+        },
+        closeModalThumb() {
+            const modal = document.getElementById('thumbModal')
+            modal.classList.add('hidden')
+            modal.classList.remove('justify-center')
+            modal.classList.remove('items-center')
+            modal.classList.remove('flex')
+            modal.setAttribute('aria-hidden', true)
+            modal.removeAttribute('aria-modal')
+            modal.removeAttribute('role')
+        },
+        openModalCategory() {
+            const modal = document.getElementById('categoryModal')
+            modal.classList.remove('hidden')
+            modal.classList.add('justify-center')
+            modal.classList.add('items-center')
+            modal.classList.add('flex')
+            modal.removeAttribute('aria-hidden')
+            modal.setAttribute('aria-modal', true)
+            modal.setAttribute('role', 'dialog')
+        },
+        closeModalCategory() {
+            const modal = document.getElementById('categoryModal')
+            modal.classList.add('hidden')
+            modal.classList.remove('justify-center')
+            modal.classList.remove('items-center')
+            modal.classList.remove('flex')
+            modal.setAttribute('aria-hidden', true)
+            modal.removeAttribute('aria-modal')
+            modal.removeAttribute('role')
         }
     }
 }

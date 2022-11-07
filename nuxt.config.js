@@ -19,7 +19,7 @@ export default {
       { href: "https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css", rel: "stylesheet" }, 
     ],
     script: [
-      { src: 'https://unpkg.com/flowbite@1.5.3/dist/flowbite.js', mode: 'client' }
+      { src: 'https://unpkg.com/flowbite@1.5.3/dist/flowbite.js', ssr: false}
     ]
   },
 
@@ -33,6 +33,7 @@ export default {
     { src : '@/plugins/vue-apexchart.js', mode: 'client' },
     { src: '~/plugins/vuex-persist.js', ssr: false },
     { src: '~/plugins/ckeditor.js', mode: 'client', ssr: false },
+    { src: '~/plugins/flowbite.js', mode: 'client', ssr: false },
     // { src: '~/plugins/sweetalert.js'},
   ],
 
@@ -48,8 +49,19 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    'vue-sweetalert2/nuxt'
+    'vue-sweetalert2/nuxt',
+    '@nuxtjs/axios'
   ],
+
+  loading: {
+    color: 'blue',
+    height: '5px'
+  },
+
+  axios: {
+    // proxy: true
+    baseURL: "https://localhost:5002/api"
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
