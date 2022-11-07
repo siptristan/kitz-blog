@@ -15,7 +15,7 @@
                     </client-only>
                 </div>
                 <div class="px-2 py-2 flex">
-                    <button class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2 py-2 text-white" @click="save">save</button>
+                    <button class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2 py-2 text-white" @click="draft">save</button>
                     <button v-if="isSaved" class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2">
                         <nuxt-link to="/dashboard-admin/preview" class="text-white">preview</nuxt-link>
                     </button>
@@ -76,9 +76,8 @@
                     </div>
                     <hr>
                     <div class="w-full h-12 bg-slate-200 flex justify-between items-center px-3">
-                        <button :class="`${ published == false ? '' : 'hidden '}w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white`" @click="publish">Publish</button>
+                        <button class="w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white" @click="publish">Publish</button>
                         <!-- <input type="button" :class="`w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white`" value="Draft"> -->
-                        <button :class="`${ drafted == false ? '' : 'hidden '}w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white`" @click="draft">Draft</button>
                     </div>
                 </div>
             </div>
@@ -179,7 +178,7 @@ export default {
             imgBase64: '',
             category: '',
             categoryID: 0,
-            editorData: '<p>Content of the editor.</p>',
+            editorData: '',
             editorConfig: {
                 readOnly: false,
                 image2_maxSize: {
@@ -212,16 +211,6 @@ export default {
             this.imgName = file.name
             this.imgData = true;
         },
-        save() {
-            this.isSaved = true
-            const data = {
-                title: this.title,
-                paragraph: this.editorData,
-                image: document.getElementById('preview').src
-            }
-            document.getElementById('preview').src = ''
-            this.$store.dispatch('blog/setItemBlog', data)
-        },
         publish() {
             this.$swal({
                 title: 'are you sure ?',
@@ -230,8 +219,6 @@ export default {
                 confirmButtonText: 'Cool'
             }).then(res => {
                 if (res.isConfirmed == true) {
-                    this.drafted = false
-                    this.published = true
                     let title = document.getElementById('title')
                     let thumb = document.getElementById('thumbnail')
                     title.setAttribute('disabled', true)
@@ -240,9 +227,9 @@ export default {
                     const data = {
                         Title: this.title,
                         Content: this.editorData,
-                        publish: this.published,
+                        IsPublish: true,
                         MainPicture: null,
-                        CategoryID: 1
+                        CategoryID: this.categoryID
                     }
                     document.getElementById('preview').src = ''
                     this.$store.dispatch('blog/save', data)
@@ -256,21 +243,29 @@ export default {
             })
         },
         draft() {
-            this.$swal({
-                title: 'are you sure ?',
-                text: 'Do you want to continue',
-                icon: 'question',
-                confirmButtonText: 'Cool'
-            }).then(res => {
-                if (res.isConfirmed == true) {
-                    this.drafted = true
-                    this.published = false
-                    let title = document.getElementById('title')
-                    let thumb = document.getElementById('thumbnail')
-                    title.removeAttribute('disabled')
-                    thumb.removeAttribute('disabled')
-                }
-            })
+            let title = document.getElementById('title')
+            let thumb = document.getElementById('thumbnail')
+            title.setAttribute('disabled', true)
+            thumb.setAttribute('disabled', true)
+
+            const data = {
+                Title: this.title,
+                Content: this.editorData,
+                IsPublish: false,
+                MainPicture: null,
+                CategoryID: this.categoryID
+            }
+            document.getElementById('preview').src = ''
+            this.$store.dispatch('blog/save', data)
+            // this.$swal({
+            //     title: 'are you sure ?',
+            //     text: 'Do you want to continue',
+            //     icon: 'question',
+            //     confirmButtonText: 'Cool'
+            // }).then(res => {
+            //     if (res.isConfirmed == true) {
+            //     }
+            // })
         },
         openModalThumb() {
             const modal = document.getElementById('thumbModal')

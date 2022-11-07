@@ -60,7 +60,7 @@ export default {
 
   axios: {
     // proxy: true
-    baseURL: "https://localhost:5002/api"
+    baseURL: "https://kitzdev.ottimo.one/api"
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
