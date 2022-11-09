@@ -23,8 +23,8 @@
             </div>
         </div>
         <div class="lg:w-4/12 w-full relative">
-            <div class="w-full h-fit flex lg:flex-col md:flex-row md:justify-between justify-center items-center lg:px-5 lg:sticky">
-                <div class="lg:w-10/12 md:w-5/12 sm:w-full h-48 bg-white rounded-md mb-3">
+            <div class="w-full h-fit lg:flex-col md:justify-between justify-center items-center lg:px-5 lg:sticky">
+                <div class="md:w-full lg:w-10/12 sm:w-full h-48 bg-white rounded-md mb-3">
                     <div class="w-full h-12 px-3 py-3"><p class="text-md">Categories</p></div>
                     <hr>
                     <div class="h-24 px-3 py-3 overflow-auto">
@@ -54,14 +54,14 @@
                         <button @click="openModalCategory" class="w-fit h-fit rounded-md bg-blue-500 text-sm px-2 py-2 text-white">Add new categories</button>
                     </div>
                 </div>
-                <div class="lg:w-10/12 md:w-5/12 sm:w-full h-48 bg-white rounded-md mb-3">
+                <div class="md:w-full lg:w-10/12 sm:w-full h-48 bg-white rounded-md mb-3">
                     <div class="w-full h-1/4 px-3 py-3"><p class="text-md">Thumbnail</p></div>
                     <hr>
                     <div class="h-3/4 px-2 py-2 flex justify-center items-center">
                         <button @click="openModalThumb" :class="`${imgName == '' ? '' : 'bg-transparent'}w-fit h-fit rounded-md bg-blue-500 text-sm px-2 py-2 text-white`" type="button">{{ imgName == '' ? 'Add Thumbnail Image' : imgName }}</button>
                     </div>
                 </div>
-                <div class="lg:w-10/12 md:w-5/12 sm:w-full h-48 bg-white rounded-md mb-3">
+                <div class="md:w-full lg:w-10/12 sm:w-full h-48 bg-white rounded-md mb-3">
                     <div class="w-full h-12 px-3 py-3"><p class="text-md">Publish</p></div>
                     <hr>
                     <div class="h-24 px-3 py-3">
@@ -136,7 +136,7 @@
                         </div>
                         <!-- Modal body -->
                         <div class="p-6 space-y-6">
-                            <div class="flex justify-start">
+                            <div class="">
                                 <div>
                                     <label for="category" class="block mb-2 text-xl font-medium text-gray-900 dark:text-gray-300">Name</label>
                                     <input type="text" v-model="category" id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required>
