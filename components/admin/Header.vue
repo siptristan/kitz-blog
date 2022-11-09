@@ -9,8 +9,8 @@
       </div>
 
       <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class="flex">
-        <div class="rounded-full w-6 h-6 p-1 mt-1 mr-2 border-2 border-green-400">
-          <img :src="user.PhotoUrl" class="w-fit h-fit mr-2" alt="">
+        <div class="rounded-full w-6 h-6 mt-1 mr-2 border-2 border-green-400">
+          <img :src="img" class="rounded-full w-fit h-fit mr-2" alt="">
         </div>
         <p class="mt-1">{{ user.FullName }}</p>
         <div class="mt-2">
@@ -146,7 +146,8 @@
         dashboard: false,
         profile: false,
         manage: false,
-        active: false
+        active: false,
+        img: ''
       }
     },
     computed: {
@@ -154,6 +155,7 @@
         return this.$store.state.login.userData
       },
     },
+    mounted(){this.img = this.$store.state.login.userData.PhotoUrl},
     methods: {
       toggleNavbar: function () {
         this.showMenu = !this.showMenu;

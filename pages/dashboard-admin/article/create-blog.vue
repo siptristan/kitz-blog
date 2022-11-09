@@ -15,7 +15,7 @@
                     </client-only>
                 </div>
                 <div class="px-2 py-2 flex">
-                    <button class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2 py-2 text-white" @click="draft">save</button>
+                    <button class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2 py-2 text-white" @click="draft">save as draft</button>
                     <button v-if="isSaved" class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2">
                         <nuxt-link to="/dashboard-admin/preview" class="text-white">preview</nuxt-link>
                     </button>
@@ -29,24 +29,24 @@
                     <hr>
                     <div class="h-24 px-3 py-3 overflow-auto">
                         <div class="flex items-center mb-4">
-                            <input id="category-1" type="checkbox" value="1" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="category-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tips Kesehatan</label>
+                            <input id="category-1" type="checkbox" value="1" class="category-opt rounded w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-1" class="category-opt-label ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Kesehatan Anak</label>
                         </div>
                         <div class="flex items-center mb-4">
-                            <input id="category-2" type="checkbox" value="2" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="category-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Obat-obatan</label>
+                            <input id="category-2" type="checkbox" value="2" class="category-opt rounded w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-2" class="category-opt-label ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Obat-obatan</label>
                         </div>
                         <div class="flex items-center mb-4">
-                            <input id="category-3" type="checkbox" value="3" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="category-3" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Penyakit</label>
+                            <input id="category-3" type="checkbox" value="3" class="category-opt rounded w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-3" class="category-opt-label ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Penyakit</label>
                         </div>
                         <div class="flex items-center mb-4">
-                            <input id="category-4" type="checkbox" value="4" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="category-4" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pengobatan Alternatif</label>
+                            <input id="category-4" type="checkbox" value="4" class="category-opt rounded w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-4" class="category-opt-label ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pengobatan Alternatif</label>
                         </div>
                         <div class="flex items-center mb-4">
-                            <input id="category-5" type="checkbox" value="5" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="category-5" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Alat Kesehatan</label>
+                            <input id="category-5" type="checkbox" value="5" class="category-opt rounded w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="category-5" class="category-opt-label ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Alat Kesehatan</label>
                         </div>
                     </div>
                     <hr>
@@ -165,7 +165,7 @@ export default {
     computed: {
         items () {
             return this.$store.state.blog.items
-        }
+        },
     },
     data() {
         return {
@@ -173,11 +173,13 @@ export default {
             isSaved: false,
             drafted: true,
             published: false,
+            IDBlog: null,
             imgName: '',
             title: '',
             imgBase64: '',
             category: '',
             categoryID: 0,
+            physicianID: 0,
             editorData: '',
             editorConfig: {
                 readOnly: false,
@@ -188,28 +190,36 @@ export default {
             }
         }
     },
-    created(){
-        // const data = {}
-        // this.$store.dispatch('blog/setItemBlog', data)
+    mounted(){
+        this.physicianID = this.$store.state.login.userData.ParamedicID
+        let categoryOpt = document.getElementsByClassName('category-opt-label')
+        let category = document.getElementsByClassName('category-opt')
+        if (this.items != null) {
+            this.IDBlog = this.items.IDBlog
+            this.title = this.items.Title
+            this.editorData = this.items.Content
+            for (let i = 0; i < categoryOpt.length; i++) {
+                if(categoryOpt[i].innerHTML == this.items.Category){
+                    category[i].setAttribute("checked", true)
+                    this.categoryID = category[i].value
+                }
+            }
+        }
     },
     methods: {
         preview(e) {
             const file = e.target.files[0]
-            var reader = new FileReader();
-            // reader.onloadend = function() {
-            //     console.log('RESULT', reader.result)
-            // }
-            // reader.readAsDataURL(file);
+            var reader = new FileReader()
 
-            reader.onload = function(fileLoadedEvent) {
-                let srcData = fileLoadedEvent.target.result; // <--- data: base64
-
-                let newImage = document.getElementById('preview');
-                newImage.src = srcData;
+            let rawImg
+            reader.onloadend = function() {
+                rawImg = reader.result
+                let newImage = document.getElementById('preview')
+                newImage.src = rawImg
             }
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file)
             this.imgName = file.name
-            this.imgData = true;
+            this.imgData = true
         },
         publish() {
             this.$swal({
@@ -219,20 +229,51 @@ export default {
                 confirmButtonText: 'Cool'
             }).then(res => {
                 if (res.isConfirmed == true) {
-                    let title = document.getElementById('title')
-                    let thumb = document.getElementById('thumbnail')
-                    title.setAttribute('disabled', true)
-                    thumb.setAttribute('disabled', true)
+                    // let title = document.getElementById('title')
+                    // let thumb = document.getElementById('thumbnail')
+                    // let img = document.getElementById('preview').src
+                    // title.setAttribute('disabled', true)
+                    // thumb.setAttribute('disabled', true)
+                    let categoryOpt = document.getElementsByClassName('category-opt')
+                    let temp = [];
+                    for (let i = 0; i < categoryOpt.length; i++) {
+                        if(categoryOpt[i].checked) {
+                            temp.push(categoryOpt[i].value)
+                        }
+                    }
+                    this.categoryID = temp.concat()
 
-                    const data = {
+                    let base64 = ['', ''];
+                    if(this.imgData == true) {
+                        let img = document.getElementById('preview').src
+                        base64 = img.split(",")
+                    }
+                    
+                    let data = {
                         Title: this.title,
                         Content: this.editorData,
-                        IsPublish: true,
-                        MainPicture: null,
-                        CategoryID: this.categoryID
+                        GCBlogStatus: 'KT009^003',
+                        CategoryID: this.categoryID,
+                        MainPicture: base64[1],
+                        PhysicianID: this.physicianID
                     }
+
+                    if (this.IDBlog != null) {
+                        data = {
+                            IDBlog: this.IDBlog,
+                            Title: this.title,
+                            Content: this.editorData,
+                            GCBlogStatus: 'KT009^003',
+                            CategoryID: this.categoryID,
+                            MainPicture: base64[1],
+                            PhysicianID: this.physicianID
+                        }
+                    }
+
+                    console.log(data)
+
                     document.getElementById('preview').src = ''
-                    this.$store.dispatch('blog/save', data)
+                    this.$store.dispatch('blog/publish', data)
                     // this.$swal({
                     //     title: 'are you sure ?',
                     //     text: 'Do you want to continue',
@@ -243,20 +284,62 @@ export default {
             })
         },
         draft() {
-            let title = document.getElementById('title')
-            let thumb = document.getElementById('thumbnail')
-            title.setAttribute('disabled', true)
-            thumb.setAttribute('disabled', true)
-
-            const data = {
+            let categoryOpt = document.getElementsByClassName('category-opt')
+            for (let i = 0; i < categoryOpt.length; i++) {
+                if(categoryOpt[i].checked) {
+                    temp.push(categoryOpt[i].value)
+                }
+            }
+            this.categoryID = temp.concat()
+            
+            let data = {
                 Title: this.title,
                 Content: this.editorData,
-                IsPublish: false,
-                MainPicture: null,
-                CategoryID: this.categoryID
+                GCBlogStatus: 'KT009^001',
+                CategoryID: this.categoryID,
+                PhysicianID: this.physicianID
             }
+
+            if(this.imgData == true) {
+                let img = document.getElementById('preview').src
+                let base64 = img.split(",")
+                data = {
+                    Title: this.title,
+                    Content: this.editorData,
+                    GCBlogStatus: 'KT009^001',
+                    MainPicture: base64[1],
+                    CategoryID: this.categoryID,
+                    PhysicianID: this.physicianID
+                }
+            }
+
+            if (this.IDBlog > 0) {
+                data = {
+                    IDBlog: this.IDBlog,
+                    Title: this.title,
+                    Content: this.editorData,
+                    GCBlogStatus: 'KT009^001',
+                    CategoryID: this.categoryID,
+                    PhysicianID: this.physicianID
+                }
+
+                if(this.imgData == true) {
+                    let img = document.getElementById('preview').src
+                    let base64 = img.split(",")
+                    data = {
+                        IDBlog: this.IDBlog,
+                        Title: this.title,
+                        Content: this.editorData,
+                        GCBlogStatus: 'KT009^001',
+                        MainPicture: base64[1],
+                        CategoryID: this.categoryID,
+                        PhysicianID: this.physicianID
+                    }
+                }
+            }
+
             document.getElementById('preview').src = ''
-            this.$store.dispatch('blog/save', data)
+            this.$store.dispatch('blog/saveDraft', data)
             // this.$swal({
             //     title: 'are you sure ?',
             //     text: 'Do you want to continue',

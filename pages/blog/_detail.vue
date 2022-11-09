@@ -1,50 +1,19 @@
 <template>
   <div class="w-11/12 md:w-8/12 mx-auto my-10">
     <div class="heading my-8">
-      <h1 class="text-4xl font-bold">Noteworthy technology acquisitions 2021</h1>
+      <h1 class="text-4xl font-bold">{{ detail.Title }}</h1>
     </div>
     <div class="flex my-4">
       <img src="../../assets/images/logo.png" class="w-12 mr-4 rounded-full" alt="">
       <div class="mt-1">
-        <p class="text-sm font-semibold">Aldi Muhammad Rahim</p>
-        <p class="text-xs font-semibold text-gray-400">19 Oktober 2022</p>
+        <p class="text-sm font-semibold">{{ detail.PhysicianName ?? '-' }}</p>
+        <p class="text-xs font-semibold text-gray-400">{{ $moment(detail.DatePublish).format('DD MM YYYY') }}</p>
       </div>
     </div>
     <div class="w-full">
       <img src="../../assets/images/search_bg.png" class="w-full" alt="">
     </div>
-    <div class="content my-4">
-      <p class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium possimus excepturi eaque
-        fugit illum perferendis voluptate ad iste autem dolorum eligendi deleniti magnam, nemo nisi consectetur
-        dolores facere soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
-        libero quae iure, enim dolorem aspernatur maiores minima repellat eveniet deleniti eum dolores reprehenderit
-        sapiente eius nobis nesciunt facilis et! Reiciendis.</p>
-      <p class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium possimus excepturi eaque
-        fugit illum perferendis voluptate ad iste autem dolorum eligendi deleniti magnam, nemo nisi consectetur
-        dolores facere soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
-        libero quae iure, enim dolorem aspernatur maiores minima repellat eveniet deleniti eum dolores reprehenderit
-        sapiente eius nobis nesciunt facilis et! Reiciendis.</p>
-      <p class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium possimus excepturi eaque
-        fugit illum perferendis voluptate ad iste autem dolorum eligendi deleniti magnam, nemo nisi consectetur
-        dolores facere soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
-        libero quae iure, enim dolorem aspernatur maiores minima repellat eveniet deleniti eum dolores reprehenderit
-        sapiente eius nobis nesciunt facilis et! Reiciendis.</p>
-      <p class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium possimus excepturi eaque
-        fugit illum perferendis voluptate ad iste autem dolorum eligendi deleniti magnam, nemo nisi consectetur
-        dolores facere soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
-        libero quae iure, enim dolorem aspernatur maiores minima repellat eveniet deleniti eum dolores reprehenderit
-        sapiente eius nobis nesciunt facilis et! Reiciendis.</p>
-      <p class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium possimus excepturi eaque
-        fugit illum perferendis voluptate ad iste autem dolorum eligendi deleniti magnam, nemo nisi consectetur
-        dolores facere soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
-        libero quae iure, enim dolorem aspernatur maiores minima repellat eveniet deleniti eum dolores reprehenderit
-        sapiente eius nobis nesciunt facilis et! Reiciendis.</p>
-      <p class="my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium possimus excepturi eaque
-        fugit illum perferendis voluptate ad iste autem dolorum eligendi deleniti magnam, nemo nisi consectetur
-        dolores facere soluta praesentium. Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus,
-        libero quae iure, enim dolorem aspernatur maiores minima repellat eveniet deleniti eum dolores reprehenderit
-        sapiente eius nobis nesciunt facilis et! Reiciendis.</p>
-    </div>
+    <div class="content my-4" v-html="detail.Content"></div>
 
     <div class="my-8">
       <h2 class="text-2xl font-semibold my-4">Add Comment</h2>
@@ -125,7 +94,15 @@
 <script>
   export default {
     name: 'DetailPage',
-    layout: 'Layout'
+    layout: 'Layout',
+    computed: {
+      detail () {
+        return this.$store.state.blog.items
+      }
+    },
+    created() {
+      this.$store.dispatch("blog/viewBlog", this.$route.params.detail)
+    }
   }
 
 </script>
