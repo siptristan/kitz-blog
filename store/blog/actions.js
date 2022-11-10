@@ -26,7 +26,7 @@ export default {
     },
     async edit({ commit }, id) {
       commit("editBlog", id)
-      this.$router.replace({ path: "/dashboard-admin/create-blog" })
+      this.$router.replace({ path: "/dashboard-admin/article/create-blog" })
     },
     async viewBlog({ commit }, id) {
       commit("viewBlog", id)

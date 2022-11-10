@@ -15,20 +15,20 @@ export default {
         SideBar,
         Header,
     },
-    mounted() {
-        const login = this.$store.state.login.isLoggedIn
-        if (login == false) {
-            this.$swal({
-                title: 'Anda Belum Login!',
-                text: 'Silahkan login terlebih dahulu',
-                icon: 'warning',
-                confirmButtonText: 'Login'
-            }).then(res => {
-                if(res.isConfirmed) {
-                    this.$router.replace({ path: '/dashboard-admin/signin' })
-                }
-            })
-        }
-    },
+    // mounted() {
+    //     const login = this.$store.state.login.isLoggedIn
+    //     if (login == false) {
+    //         this.$swal({
+    //             title: 'Anda Belum Login!',
+    //             text: 'Silahkan login terlebih dahulu',
+    //             icon: 'warning',
+    //             confirmButtonText: 'Login'
+    //         }).then(res => {
+    //             if(res.isConfirmed) {
+    //                 this.$router.replace({ path: '/dashboard-admin/signin' })
+    //             }
+    //         })
+    //     }
+    // },
 }
 </script>

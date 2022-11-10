@@ -116,13 +116,9 @@
       Header,
       Card
     },
-    computed: {
-      isLoggedIn() {
-        return this.$store.state.login.isLoggedIn
-      }
-    },
     data() {
       return {
+        isLoggedIn: false,
         username: '',
         password: '',
         img: [{
@@ -183,6 +179,9 @@
           // },
         },
       }
+    },
+    mounted() {
+      this.isLoggedIn = sessionStorage.getItem("isLoggedIn")
     },
     methods: {
       login() {

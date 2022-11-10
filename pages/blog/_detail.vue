@@ -97,7 +97,7 @@
     layout: 'Layout',
     computed: {
       detail () {
-        return this.$store.state.blog.items
+        return this.$store.state.blog.viewBlog
       }
     },
     created() {
