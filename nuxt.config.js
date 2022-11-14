@@ -63,7 +63,7 @@ export default {
     // proxy: true
     baseURL: "https://kitzdev.ottimo.one/api",
     proxyHeaders: false,
-    credentials: false
+    credentials: false,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

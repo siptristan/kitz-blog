@@ -1,11 +1,10 @@
 <template>
-
   <div class="w-10/12 mx-auto">
     <div
       class="p-4 w-full max-w-sm mx-auto my-20 md:my-28 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
       <div class="space-y-6">
         <div>
-          <img src="../../assets/images/logo2.png" class="w-6/12 mx-auto" alt="">
+          <img src="../assets/images/logo2.png" class="w-6/12 mx-auto" alt="">
           <h1 class="text-center font-normal text-gray-500 my-8">Please Sign In with Your Account</h1>
         </div>
         <div>

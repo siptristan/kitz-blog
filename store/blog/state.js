@@ -1,6 +1,9 @@
 export default () => ({
     items: {},
     allBlog: [],
-    viewBlog: {}
+    articleList: {},
+    viewBlog: {},
+    comment: [],
+    category: []
   })
   

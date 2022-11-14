@@ -139,8 +139,21 @@
     </div>
 </template>
 <script>
+// import { ckeditorVue } from '../index.js'
+//import { mapMutations } from 'vuex'
 export default {
     layout: 'Admin',
+    components: {
+        // ckeditorVue
+    },
+    computed: {
+        items () {
+            return this.$store.state.blog.items
+        },
+        categoryItem() {
+            return this.$store.state.blog.category
+        }
+    },
     data() {
         return {
             imgData: false,
@@ -164,13 +177,29 @@ export default {
             }
         }
     },
-    computed: {
-        categoryItem() {
-            return this.$store.state.blog.category
-        }
-    },
-    created(){
+    mounted(){
         this.$store.dispatch("blog/getCategory")
+        this.physicianID = this.$store.state.login.userData.ParamedicID
+        let categoryLabel = document.getElementsByClassName('category-opt-label')
+        let category = document.getElementsByClassName('category-opt')
+        if (this.items != null) {
+            this.IDBlog = this.items.IDBlog
+            this.title = this.items.Title
+            this.editorData = this.items.Content
+            let categoryVal = this.items.CategoryName.split(", ")
+            for (let i = 0; i < categoryLabel.length; i++) {
+                categoryVal.map(item => {
+                    if(item == categoryLabel[i].innerHTML) {
+                        category[i].setAttribute("checked", true)
+                    }
+                })
+
+                // if(categoryLabel[i].innerHTML == ){
+                //     category[i].setAttribute("checked", true)
+                //     this.categoryID = category[i].value
+                // }
+            }
+        }
     },
     methods: {
         preview(e) {
@@ -192,7 +221,7 @@ export default {
                 title: 'are you sure ?',
                 text: 'Do you want to continue',
                 icon: 'question',
-                confirmButtonText: 'Yes, proceed'
+                confirmButtonText: 'Cool'
             }).then(res => {
                 if (res.isConfirmed == true) {
                     let categoryOpt = document.getElementsByClassName('category-opt')
@@ -209,7 +238,9 @@ export default {
                         let img = document.getElementById('preview').src
                         base64 = img.split(",")
                     }
+
                     let data = {
+                        IDBlog: this.IDBlog,
                         Title: this.title,
                         Content: this.editorData,
                         GCBlogStatus: 'KT009^003',
@@ -231,19 +262,25 @@ export default {
                 }
             }
             this.categoryID = temp.concat()
-            let data = {}
-            let base64 = [];
+
+            let base64 = ['', ''];
             if(this.imgData == true) {
                 let img = document.getElementById('preview').src
-                let base64 = img.split(",")
+                base64 = img.split(",")
             }
-            data = {
-                Title: this.title,
-                Content: this.editorData,
-                GCBlogStatus: 'KT009^001',
-                MainPicture: base64[1],
-                CategoryID: this.categoryID,
-                PhysicianID: this.$store.state.login.userData.ParamedicID
+
+            let data = {}
+            if (this.IDBlog > 0) {
+                let data = {
+                    IDBlog: this.IDBlog,
+                    Title: this.title,
+                    Content: this.editorData,
+                    GCBlogStatus: 'KT009^001',
+                    CategoryID: this.categoryID,
+                    MainPicture: base64[1],
+                    PhysicianID: this.physicianID
+                }
+
             }
 
             document.getElementById('preview').src = ''

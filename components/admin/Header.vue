@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card w-full h-fit rounded bg-white px-4 py-2.5 flex justify-between lg:justify-end">
+    <div class="relative card w-full h-fit rounded bg-white px-4 py-2.5 flex justify-between lg:justify-end">
       <div class="lg:hidden" v-on:click="toggleNavbar()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
           class="w-6 h-6">
@@ -8,7 +8,7 @@
         </svg>
       </div>
 
-      <button id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class="flex">
+      <button @click="dropdown" id="dropdownAvatarNameButton" data-dropdown-toggle="dropdownAvatarName" class="flex">
         <div class="rounded-full w-6 h-6 mt-1 mr-2 border-2 border-green-400">
           <img :src="img" class="rounded-full w-fit h-fit mr-2" alt="">
         </div>
@@ -24,7 +24,7 @@
       </button>
 
       <div id="dropdownAvatarName"
-        class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+        class="hidden max-[1024px]:left-3/4 max-[650px]:left-2/4 z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
         <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
           aria-labelledby="dropdownInformdropdownAvatarNameButtonationButton">
           <li class="flex ml-2">
@@ -147,7 +147,8 @@
         profile: false,
         manage: false,
         active: false,
-        img: ''
+        img: '',
+        count: 1
       }
     },
     computed: {
@@ -184,6 +185,20 @@
       },
       singout() {
         this.$store.dispatch('login/singOut')
+      },
+      dropdown() {
+        this.count += 1;
+        let dropdownMenu = document.getElementById('dropdownAvatarName')
+
+        if  (this.count % 2 == 0) {
+          dropdownMenu.classList.remove('hidden')
+          dropdownMenu.classList.add('absolute')
+          dropdownMenu.classList.add('top-14')
+        } else {
+          dropdownMenu.classList.remove('absolute')
+          dropdownMenu.classList.remove('top-14')
+          dropdownMenu.classList.add('hidden')
+        }
       }
     }
   }

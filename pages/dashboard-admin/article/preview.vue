@@ -4,7 +4,7 @@
       <h1 v-html="items.title" class="text-4xl font-bold"></h1>
     </div>
     <div class="flex my-4">
-      <img src="../../assets/images/logo.png" class="w-12 mr-4 rounded-full" alt="">
+      <img src="../../../assets/images/logo.png" class="w-12 mr-4 rounded-full" alt="">
       <div class="mt-1">
         <p class="text-sm font-semibold">Aldi Muhammad Rahim</p>
         <p class="text-xs font-semibold text-gray-400">19 Oktober 2022</p>

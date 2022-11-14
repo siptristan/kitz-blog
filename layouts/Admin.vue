@@ -1,5 +1,8 @@
-<template>
-    <div id="pageAdmin" class="lg:flex bg-[#F3F2F3] w-full h-full z-0">
+<template >
+    <div v-if="loginState == false" class="w-full h-full">
+        <loading/>
+    </div>
+    <div v-else id="pageAdmin" class="lg:flex bg-[#F3F2F3] w-full h-full z-0">
         <side-bar />
         <div class="container w-full mx-auto px-4 py-4 overflow-scroll">
             <Header />
@@ -10,25 +13,25 @@
 <script>
 import SideBar from '../components/admin/SideBar.vue'
 import Header from '../components/admin/Header.vue'
+import loading from '../components/loading.vue'
 export default {
+    name: "Admin",
     components: {
         SideBar,
         Header,
+        loading
     },
-    // mounted() {
-    //     const login = this.$store.state.login.isLoggedIn
-    //     if (login == false) {
-    //         this.$swal({
-    //             title: 'Anda Belum Login!',
-    //             text: 'Silahkan login terlebih dahulu',
-    //             icon: 'warning',
-    //             confirmButtonText: 'Login'
-    //         }).then(res => {
-    //             if(res.isConfirmed) {
-    //                 this.$router.replace({ path: '/dashboard-admin/signin' })
-    //             }
-    //         })
-    //     }
-    // },
+    computed: {
+        loginState () {
+            return this.$store.state.login.isLoggedIn
+            // Or return basket.getters.fruitsCount
+            // (depends on your design decisions).
+        }
+    },
+    mounted() {
+        if(this.loginState == false) {
+            this.$router.replace({ path: "/dashboard-admin" })
+        }
+    }
 }
 </script>

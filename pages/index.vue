@@ -5,23 +5,18 @@
         <div class="">
           <img src="../assets/images/search_bg.png" class="w-full h-52 md:h-full rounded" alt="">
         </div>
-        <div class="my-2 md:my-12">
+        <div v-if="blogs.NewBlog" class="my-2 md:my-12">
           <div class="title text-3xl font-semibold">
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+            <p>{{ blogs.NewBlog[0].Title }}</p>
           </div>
           <div class="flex my-4">
             <img src="../assets/images/logo.png" class="w-12 mr-4 rounded-full" alt="">
             <div class="mt-1">
-              <p class="text-sm font-semibold">Aldi Muhammad Rahim</p>
-              <p class="text-xs font-semibold text-gray-400">19 Oktober 2022</p>
+              <p class="text-sm font-semibold">{{ blogs.NewBlog[0].ParamedicName }}</p>
+              <p class="text-xs font-semibold text-gray-400">{{ $moment(blogs.NewBlog[0].DatePublish).format('DD MMM yyyy') }}</p>
             </div>
           </div>
-          <div class="view-content text-sm font-normal text-gray-500 text-justify mt-4">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, libero veniam quis non sunt voluptate,
-              molestias, dolorum consequatur laborum commodi sapiente sed consequuntur optio ex eos quo. Blanditiis,
-              vero nesciunt! Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum vel voluptatem tenetur
-              nostrum, voluptates nulla quibusdam esse. Voluptates distinctio quis consequuntur accusantium a cumque
-              repudiandae numquam velit consequatur corporis! Consectetur.</p>
+          <div class="text-content h-24 overflow-hidden text-sm font-normal text-gray-500 text-justify mt-4" v-html="blogs.NewBlog[0].Content">
           </div>
           <div class="mt-4">
             <NuxtLink to="/blog/detail">
