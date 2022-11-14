@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-fit flex lg:flex-row flex-col justify-between py-5">
+    <div class="w-full h-fit flex lg:flex-row flex-col justify-between py-5 px-5">
         <div class="lg:w-8/12 w-full mb-3 bg-white rounded-lg px-5 py-5">
             <div class="w-full flex flex-col">
                 <div class="px-2 py-2">
@@ -140,7 +140,6 @@
 </template>
 <script>
 export default {
-    layout: 'Admin',
     data() {
         return {
             imgData: false,

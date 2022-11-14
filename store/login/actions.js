@@ -11,7 +11,7 @@ export default {
     },
     singOut({ commit }) {
       commit("singOut")
-      this.$router.replace({ path: "/dashboard-admin" })
+      this.$router.go(-1)
     }
 }
   
