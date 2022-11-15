@@ -26,7 +26,7 @@ export default {
       })
     },
     viewBlog(state, id) {
-      state.allBlog?.LstTopBlog.map( item => {
+      state.allBlog?.LstTopBlog?.map( item => {
         if(item.IDBlog == id) {
           state.viewBlog = item
         }

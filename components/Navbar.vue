@@ -14,9 +14,9 @@
           <nuxt-link class="text-base mx-6 hover:text-blue-500" to="/physician"> Physician</nuxt-link>
           <nuxt-link class="text-base mx-6 hover:text-blue-500" to="/blog">Blog</nuxt-link>
           <nuxt-link class="text-base mx-6 hover:text-blue-500" to="/">About</nuxt-link>
-          <nuxt-link v-if="user.isLoggedIn == false" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" to="/signin">Sign In</nuxt-link>
+          <!-- <nuxt-link v-if="user.isLoggedIn == false" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" to="/signin">Sign In</nuxt-link> -->
         </div>
-        <div class="relative">
+        <!-- <div class="relative">
           <button v-if="user.isLoggedIn == true" @click="dropdown" class="flex mt-1">
             <div class="rounded-full w-6 h-6 mt-1 mr-2 border-2 border-green-400">
               <img :src="img" class="rounded-full w-fit h-fit mr-2" alt="">
@@ -72,7 +72,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
