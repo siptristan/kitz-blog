@@ -74,5 +74,11 @@ export default {
         autoprefixer: {},
       },
     },
+  },
+
+  target: 'static',
+  ssr: false,
+  generate: {
+    fallback: true
   }
 }

@@ -2,10 +2,13 @@
   <div>
     <div class="w-11/12 mx-auto mt-8">
       <div class="grid grid-cols-1 md:grid-cols-2  gap-4">
-        <div class="">
+        <div v-if="blogs != null && blogs.NewBlog.length > 0" class="">
+          <img :src="`https://kitzdev.ottimo.one/appdata/blog/${blogs.NewBlog[0].Slug}/${blogs.NewBlog[0].MainPicture}`" class="h-52 md:h-full rounded" alt="">
+        </div>
+        <div v-else class="">
           <img src="../assets/images/search_bg.png" class="w-full h-52 md:h-full rounded" alt="">
         </div>
-        <div v-if="blogs.NewBlog" class="my-2 md:my-12">
+        <div v-if="blogs != null && blogs.NewBlog.length > 0" class="my-2 md:my-12">
           <div class="title text-3xl font-semibold">
             <p>{{ blogs.NewBlog[0].Title }}</p>
           </div>
@@ -67,7 +70,7 @@
             See All
           </a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4 mb-4">
+        <div v-if="blogs != null" class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4 mb-4">
           <div
             v-for="(item, i) in blogs.LstTopBlog"
             :key="i"
@@ -91,38 +94,10 @@
             </div>
           </div>
         </div>
+        <div v-else class="flex justify-center items-center w-full h-32">
+          <p>Data belum ada</p>
+        </div>
       </div>
-
-      <!-- Category -->
-      <!-- <div class="mt-8 mb-8">
-        <div class="text-2xl font-semibold text-center mb-8">
-          <p>Categories</p>
-          
-        </div>
-        <div class="grid grid-cols-2 gap-2 md:flex md:justify-center">
-          <a href="#" class="mx-4 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <img src="../assets/images/baby-boy.png" class="w-12 mx-auto" alt="">
-            <h5 class="mb-2 text-center text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Kesehatan Anak</h5>
-          </a>
-          <a href="#" class="mx-4 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <img src="../assets/images/baby-boy.png" class="w-12 mx-auto" alt="">
-            <h5 class="mb-2 text-center text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Kesehatan Anak</h5>
-          </a>
-          <a href="#" class="mx-4 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <img src="../assets/images/baby-boy.png" class="w-12 mx-auto" alt="">
-            <h5 class="mb-2 text-center text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Kesehatan Anak</h5>
-          </a>
-          <a href="#" class="mx-4 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <img src="../assets/images/baby-boy.png" class="w-12 mx-auto" alt="">
-            <h5 class="mb-2 text-center text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Kesehatan Anak</h5>
-          </a>
-          <a href="#" class="mx-4 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <img src="../assets/images/baby-boy.png" class="w-12 mx-auto" alt="">
-            <h5 class="mb-2 text-center text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Kesehatan Anak</h5>
-          </a>
-        </div>
-
-      </div> -->
 
       <!-- Physician -->
       <div class="mt-8 mb-8">
@@ -210,8 +185,32 @@
         return this.$store.state.blog.allBlog
       }
     },
+    data(){
+      return {
+        count: 0
+      }
+    },
     created() {
       this.$store.dispatch("blog/getHompage")
+      // let test = (val) => {
+      //   if (val != null) {
+      //     val += 1
+      //     localStorage.setItem("test", val)
+      //   } else {
+      //     this.count += 1
+      //     localStorage.setItem("test", this.count)
+      //   }
+      // }
+      // let startCount = () => {
+      //   setInterval(() => {
+      //     test(localStorage.getItem("test"))
+      //     //console.log(localStorage.getItem("test"))
+      //   }, 1000)
+      // }
+      // startCount()
+      // setTimeout(() => {
+        
+      // })
     }
   }
 

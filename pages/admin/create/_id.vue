@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-fit flex lg:flex-row flex-col justify-between py-5">
+    <div class="w-full h-fit flex lg:flex-row flex-col justify-between py-5 px-5">
         <div class="lg:w-8/12 w-full mb-3 bg-white rounded-lg px-5 py-5">
             <div class="w-full flex flex-col">
                 <div class="px-2 py-2">
@@ -17,7 +17,7 @@
                 <div class="px-2 py-2 flex">
                     <button class="rounded-md bg-blue-500 mr-2 w-fit px-2 py-2 text-white" @click="draft">save as draft</button>
                     <button v-if="isSaved" class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2">
-                        <nuxt-link to="/dashboard-admin/preview" class="text-white">preview</nuxt-link>
+                        <nuxt-link to="/admin/preview" class="text-white">preview</nuxt-link>
                     </button>
                 </div>
             </div>
@@ -140,7 +140,7 @@
 </template>
 <script>
 export default {
-    layout: 'Admin',
+    name: "createWebView",
     data() {
         return {
             imgData: false,
@@ -292,8 +292,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-/* .option {
-
-} */
-</style>

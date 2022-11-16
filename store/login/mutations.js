@@ -8,8 +8,9 @@ export default {
           state.isPhysician = true
         }
     },
-    singOut(state) {
+    signOut(state) {
       state.isLoggedIn = false
+      state.isPhysician = false
       state.userData = {}
     }
   }

@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-fit flex lg:flex-row flex-col justify-between py-5 px-5">
+    <div class="w-full h-fit flex lg:flex-row flex-col justify-between py-5">
         <div class="lg:w-8/12 w-full mb-3 bg-white rounded-lg px-5 py-5">
             <div class="w-full flex flex-col">
                 <div class="px-2 py-2">
@@ -17,7 +17,7 @@
                 <div class="px-2 py-2 flex">
                     <button class="rounded-md bg-blue-500 mr-2 w-fit px-2 py-2 text-white" @click="draft">save as draft</button>
                     <button v-if="isSaved" class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2">
-                        <nuxt-link to="/dashboard-admin/preview" class="text-white">preview</nuxt-link>
+                        <nuxt-link to="/admin/preview" class="text-white">preview</nuxt-link>
                     </button>
                 </div>
             </div>
@@ -43,6 +43,39 @@
                     <hr>
                     <div class="h-3/4 px-2 py-2 flex justify-center items-center">
                         <button @click="openModalThumb" :class="`${imgName == '' ? '' : 'bg-transparent'}w-fit h-fit rounded-md bg-blue-500 text-sm px-2 py-2 text-white`" type="button">{{ imgName == '' ? 'Add Thumbnail Image' : imgName }}</button>
+                    </div>
+                </div>
+                <div class="md:w-full lg:w-10/12 sm:w-full h-48 bg-white rounded-md mb-3">
+                    <div class="w-full h-1/4 px-3 py-3"><p class="text-md">Tag</p></div>
+                    <hr>
+                    <div class="h-3/4 px-2 py-2 overflow-scroll">
+                        <div class="flex">
+                            <input 
+                                type="text" 
+                                v-model="tag"
+                                class="
+                                    w-full 
+                                    bg-gray-50 
+                                    border 
+                                    border-gray-300 
+                                    text-gray-900 
+                                    text-sm 
+                                    rounded-lg 
+                                    focus:ring-blue-500 
+                                    focus:border-blue-500 
+                                    block 
+                                    w-full 
+                                    p-2.5 
+                                    dark:bg-gray-700 
+                                    dark:border-gray-600 
+                                    dark:placeholder-gray-400 
+                                    dark:text-white 
+                                    dark:focus:ring-blue-500 
+                                    dark:focus:border-blue-500"
+                            >
+                            <button @click="add" class="ml-2 w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white">Add</button>
+                        </div>
+                        <div id="tags" class="w-full h-fit mt-1"></div>
                     </div>
                 </div>
                 <div class="md:w-full lg:w-10/12 sm:w-full h-48 bg-white rounded-md mb-3">
@@ -140,6 +173,7 @@
 </template>
 <script>
 export default {
+    layout: 'Admin',
     data() {
         return {
             imgData: false,
@@ -160,7 +194,9 @@ export default {
                     height: 300,
                     width: 250
                 }
-            }
+            },
+            tag: '',
+            tags: []
         }
     },
     computed: {
@@ -287,6 +323,10 @@ export default {
             modal.setAttribute('aria-hidden', true)
             modal.removeAttribute('aria-modal')
             modal.removeAttribute('role')
+        },
+        add() {
+            let tagView = document.getElementById("tags")
+            tagView.innerHTML += `<button @click="add" class="ml-2 w-fit h-fit rounded-md bg-slate-400 text-sm py-2 px-2 text-white relative" disabled>${this.tag} <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle absolute -top-2 left-full"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></button>`
         }
     }
 }

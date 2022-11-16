@@ -3,7 +3,7 @@ export default {
       // make request
         const sendData = await this.$axios.$post("Blog/insertblog", data, { progress: true })
         commit("setItem", {})
-        this.$router.replace({ path: "/dashboard-admin/article" })
+        this.$router.replace({ path: "/admin/article" })
     //   return res.data;
     },
     async saveDraft({ commit }, data) {
@@ -12,33 +12,36 @@ export default {
       commit("setItem", {})
     //   return res.data;
     },
-    async getBlog({ commit }, id) {
-      await this.$axios.$get(`Blog/getdatablogphysician/${id}`, { progress: true })
-      .then(res => {
-        let data = []
-        let val = []
-        for (let i = 0; i < res.Retval.length; i++) {
-          val.push(res.Retval[i])
-          let index = data.length
-          if (index == 0) {
-            index = 1
-          }
-          if( val.length == 5 ) {
-            data.push({ page: index, value: val })
-            val = []
-          }
-          if (i == res.Retval.length - 1) {
-            data.push({ page: index + 1, value: val })
-            val = []
-          }
+    async pagingData({ commit }, items) {
+      let data = []
+      let val = []
+      for (let i = 0; i < items.Retval.length; i++) {
+        val.push(items.Retval[i])
+        let index = data.length
+        if (index == 0) {
+          index = 1
         }
-        commit("setArticleData", data)
+        if( val.length == 5 ) {
+          data.push({ page: index, value: val })
+          val = []
+        }
+        if (i == items.Retval.length - 1) {
+          data.push({ page: index + 1, value: val })
+          val = []
+        }
+      }
+      commit(items.mutate, data)
+    },
+    async getBlog({ dispatch }, id) {
+      await this.$axios.$get(`Blog/getdatablogphysician/${id}`, { progitemss: true })
+      .then(res => {
+        dispatch("pagingData", {response: res, mutate: "setArticleData"})
       })
     },
-    async getAllBlog({ commit }, id) {
+    async getAllBlog({ dispatch }) {
       await this.$axios.$get("Blog/getallblog", { progress: true })
       .then(res => {
-        commit("setAllBlog", res.Retval)
+        dispatch("pagingData", {response: res, mutate: "setAllBlog"})
       })
     },
     async getHompage({ commit }, id) {
@@ -59,7 +62,7 @@ export default {
     },
     async edit({ commit }, data) {
       commit("editBlog", data)
-      this.$router.replace({ path: "/dashboard-admin/article/edit-blog" })
+      this.$router.replace({ path: "/admin/article/edit-blog" })
     },
     async viewBlog({ commit }, id) {
       commit("viewBlog", id)
@@ -72,7 +75,7 @@ export default {
     },
     async reply({ dispatch }, data) {
       await this.$axios.$post(`blog/insertreplycomment`, data).then(res => {
-        // this.$router.replace({ path: `/dashboard-admin/article/${data.IDBlog}` })
+        // this.$router.replace({ path: `/admin/article/${data.IDBlog}` })
         if (res.result) {
           this.$swal({
             toast: true,

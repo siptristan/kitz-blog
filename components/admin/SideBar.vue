@@ -19,7 +19,7 @@
           @mouseenter="mouseOver(0)"
           @mouseout="mouseOut(0)"
         >
-          <nuxt-link to="/dashboard-admin/home"
+          <nuxt-link to="/admin"
             class="flex px-2 w-full h-full items-center transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
             <div class="flex justify-center items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -38,7 +38,7 @@
           @mouseover="mouseOver(1)"
           @mouseout="mouseOut(1)"
         >
-          <nuxt-link to="/dashboard-admin/article"
+          <nuxt-link to="/admin/article"
             class="flex px-2 w-full h-full transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
             <div class="flex justify-center items-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">

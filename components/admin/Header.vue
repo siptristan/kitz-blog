@@ -58,7 +58,7 @@
               </svg>
             </div>
             <a href="javascript:void(0)"
-            @click="singout"
+              @click="signout"
               class="block py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign
               out</a>
           </div>
@@ -85,7 +85,7 @@
         <button id="dashboard"
           class="nav-btn rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
           @mouseenter="mouseOver(0)" @mouseout="mouseOut(0)">
-          <nuxt-link to="/dashboard-admin"
+          <nuxt-link to="/admin"
             class="flex px-2 w-full h-full items-center transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
             <div class="flex justify-center items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -101,7 +101,7 @@
         <button id="profile"
           class="nav-btn rounded-md mt-2 hover:bg-blue-500 w-5/6 h-10 transition duration-300 ease-out hover:ease-in hover:text-white"
           @mouseenter="mouseOver(1)" @mouseout="mouseOut(1)">
-          <nuxt-link to="/dashboard-admin/profile"
+          <nuxt-link to="/admin/profile"
             class="flex px-2 w-full h-full transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
             <div class="flex justify-center items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -119,7 +119,7 @@
           @mouseover="mouseOver(2)"
           @mouseout="mouseOut(2)"
         >
-          <nuxt-link to="/dashboard-admin/article/create-blog"
+          <nuxt-link to="/admin/article/create-blog"
             class="flex px-2 w-full h-full transition duration-300 ease-out hover:ease-in hover:text-white text-sm">
             <div class="flex justify-center items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -183,8 +183,8 @@
           this.manage = false
         }
       },
-      singout() {
-        this.$store.dispatch('login/singOut')
+      signout() {
+        this.$store.dispatch('login/signOut')
       },
       dropdown() {
         this.count += 1;

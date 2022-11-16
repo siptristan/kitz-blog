@@ -17,7 +17,7 @@
                 <div class="px-2 py-2 flex">
                     <button class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2 py-2 text-white" @click="draft">save as draft</button>
                     <button v-if="isSaved" class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2">
-                        <nuxt-link to="/dashboard-admin/preview" class="text-white">preview</nuxt-link>
+                        <nuxt-link to="/admin/preview" class="text-white">preview</nuxt-link>
                     </button>
                 </div>
             </div>

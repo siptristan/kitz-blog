@@ -30,7 +30,11 @@ export default {
     },
     mounted() {
         if(this.loginState == false) {
-            this.$router.replace({ path: "/dashboard-admin" })
+            this.$router.replace({ path: "/signin" })
+        } else {
+            setTimeout(() => {
+                this.$store.commit("login/signOut")
+            }, 600000)
         }
     }
 }
