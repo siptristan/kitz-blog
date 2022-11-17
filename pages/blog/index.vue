@@ -33,7 +33,7 @@
       <div class="my-10">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div
-            v-for="(item, i) in blogs"
+            v-for="(item, i) in blog.value"
             :key="i"
             class="blog-items max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <img class="rounded-t-lg w-full" src="../../assets/images/search_bg.png" alt="">
@@ -56,14 +56,22 @@
             </div>
           </div>
         </div>
+        <div v-if="blogs.length > 0" class="w-full h-fit flex justify-end py-4">
+          <Pagination :blogs="blogs" :page="blog.page" />
+        </div>
+        <div v-else></div>
       </div>
     </div>
 </template>
 
 <script>
+  import { Pagination } from '../index.js'
   export default {
     name: 'BlogPage',
     layout: 'Layout',
+    components: {
+      Pagination
+    },
     computed: {
       blogs () {
         return this.$store.state.blog.allBlog
@@ -75,12 +83,14 @@
     data(){
       return {
         itemInput: '',
-        itemSelect: ''
+        itemSelect: '',
+        blog: []
       }
     },
-    created() {
-      this.$store.dispatch("blog/getAllBlog")
-      this.$store.dispatch("blog/getCategory")
+    async created() {
+      await this.$store.dispatch("blog/getAllBlog")
+      await this.$store.dispatch("blog/getCategory")
+      this.showPage(1)
     },
     methods: {
       setItem() {
@@ -112,6 +122,16 @@
           } else {
             items[i].classList.add("hidden");
           }
+        }
+      },
+      showPage(i) {
+        if(i > 0 && i <= this.blogs.length) {
+          console.log(this.blogs)
+          this.blogs.map(item => {
+            if (item.page == i) {
+              this.blog = item
+            }
+          })
         }
       }
     }

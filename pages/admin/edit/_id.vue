@@ -15,7 +15,7 @@
                     </client-only>
                 </div>
                 <div class="px-2 py-2 flex">
-                    <button class="rounded-md bg-blue-500 mr-2 w-fit px-2 py-2 text-white" @click="draft">save as draft</button>
+                    <button class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2 py-2 text-white" @click="draft">save as draft</button>
                     <button v-if="isSaved" class="rounded-md bg-blue-500 w-20 mr-2 w-fit px-2">
                         <nuxt-link to="/admin/preview" class="text-white">preview</nuxt-link>
                     </button>
@@ -43,46 +43,6 @@
                     <hr>
                     <div class="h-3/4 px-2 py-2 flex justify-center items-center">
                         <button @click="openModalThumb" :class="`${imgName == '' ? '' : 'bg-transparent'}w-fit h-fit rounded-md bg-blue-500 text-sm px-2 py-2 text-white`" type="button">{{ imgName == '' ? 'Add Thumbnail Image' : imgName }}</button>
-                    </div>
-                </div>
-                <div class="md:w-full lg:w-10/12 sm:w-full h-48 bg-white rounded-md mb-3">
-                    <div class="w-full h-1/4 px-3 py-3"><p class="text-md">Tag</p></div>
-                    <hr>
-                    <div class="h-3/4 px-2 py-2 overflow-scroll">
-                        <div class="flex">
-                            <input 
-                                type="text" 
-                                v-model="tag"
-                                class="
-                                    w-full 
-                                    bg-gray-50 
-                                    border 
-                                    border-gray-300 
-                                    text-gray-900 
-                                    text-sm 
-                                    rounded-lg 
-                                    focus:ring-blue-500 
-                                    focus:border-blue-500 
-                                    block 
-                                    w-full 
-                                    p-2.5 
-                                    dark:bg-gray-700 
-                                    dark:border-gray-600 
-                                    dark:placeholder-gray-400 
-                                    dark:text-white 
-                                    dark:focus:ring-blue-500 
-                                    dark:focus:border-blue-500"
-                            >
-                            <button @click="add" class="ml-2 w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white">Add</button>
-                        </div>
-                        <div id="tags" class="w-full h-fit mt-3">
-                            <span v-for="(item, i) in tags" :key="i" class="tag-item inline-flex items-center py-1 px-2 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-800">
-                            {{ tags[i] }}
-                            <button type="button" @click="close(i)" class="inline-flex items-center p-0.5 ml-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-300 dark:hover:text-blue-900">
-                                <svg aria-hidden="true" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                            </button>
-                            </span>
-                        </div>
                     </div>
                 </div>
                 <div class="md:w-full lg:w-10/12 sm:w-full h-48 bg-white rounded-md mb-3">
@@ -179,8 +139,20 @@
     </div>
 </template>
 <script>
+// import { ckeditorVue } from '../index.js'
+//import { mapMutations } from 'vuex'
 export default {
-    layout: 'Admin',
+    components: {
+        // ckeditorVue
+    },
+    computed: {
+        items () {
+            return this.$store.state.blog.items
+        },
+        categoryItem() {
+            return this.$store.state.blog.category
+        }
+    },
     data() {
         return {
             imgData: false,
@@ -201,19 +173,29 @@ export default {
                     height: 300,
                     width: 250
                 }
-            },
-            tag: '',
-            tags: [],
-            index: 0
+            }
         }
     },
-    computed: {
-        categoryItem() {
-            return this.$store.state.blog.category
+    async mounted(){
+        await this.$store.dispatch("blog/getCategory")
+        await this.$store.dispatch("blog/getBlogById", this.$route.params.id)
+        this.physicianID = this.$store.state.login.userData.ParamedicID
+        let categoryLabel = document.getElementsByClassName('category-opt-label')
+        let category = document.getElementsByClassName('category-opt')
+        if (this.items != null) {
+            this.IDBlog = this.items.IDBlog
+            this.title = this.items.Title
+            this.editorData = this.items.Content
+            let categoryVal = this.items.CategoryName.split(", ")
+            console.log(categoryVal)
+            for (let i = 0; i < categoryLabel.length; i++) {
+                categoryVal.map(item => {
+                    if(item == categoryLabel[i].innerHTML) {
+                        category[i].setAttribute("checked", true)
+                    }
+                })
+            }
         }
-    },
-    created(){
-        this.$store.dispatch("blog/getCategory")
     },
     methods: {
         preview(e) {
@@ -235,7 +217,7 @@ export default {
                 title: 'are you sure ?',
                 text: 'Do you want to continue',
                 icon: 'question',
-                confirmButtonText: 'Yes, proceed'
+                confirmButtonText: 'Cool'
             }).then(res => {
                 if (res.isConfirmed == true) {
                     let categoryOpt = document.getElementsByClassName('category-opt')
@@ -246,21 +228,23 @@ export default {
                         }
                     }
                     this.categoryID = temp.concat().toString()
+
                     let base64 = [];
                     if(this.imgData == true) {
                         let img = document.getElementById('preview').src
                         base64 = img.split(",")
                     }
-                    this.tags = this.tags.concat().toString()
+
                     let data = {
+                        IDBlog: this.IDBlog,
                         Title: this.title,
                         Content: this.editorData,
                         GCBlogStatus: 'KT009^003',
                         Category: this.categoryID,
                         MainPicture: base64[1],
-                        PhysicianID: this.$store.state.login.userData.ParamedicID,
-                        Tag: this.tags
+                        PhysicianID: this.$store.state.login.userData.ParamedicID
                     }
+
                     document.getElementById('preview').src = ''
                     this.$store.dispatch('blog/publish', data)
                 }
@@ -274,21 +258,25 @@ export default {
                 }
             }
             this.categoryID = temp.concat()
-            let data = {}
-            let base64 = [];
+
+            let base64 = ['', ''];
             if(this.imgData == true) {
                 let img = document.getElementById('preview').src
                 base64 = img.split(",")
             }
-            this.tags = this.tags.concat().toString()
-            data = {
-                Title: this.title,
-                Content: this.editorData,
-                GCBlogStatus: 'KT009^001',
-                MainPicture: base64[1],
-                CategoryID: this.categoryID,
-                PhysicianID: this.$store.state.login.userData.ParamedicID,
-                Tag: this.tags
+
+            let data = {}
+            if (this.IDBlog > 0) {
+                let data = {
+                    IDBlog: this.IDBlog,
+                    Title: this.title,
+                    Content: this.editorData,
+                    GCBlogStatus: 'KT009^001',
+                    CategoryID: this.categoryID,
+                    MainPicture: base64[1],
+                    PhysicianID: this.physicianID
+                }
+
             }
 
             document.getElementById('preview').src = ''
@@ -333,17 +321,6 @@ export default {
             modal.setAttribute('aria-hidden', true)
             modal.removeAttribute('aria-modal')
             modal.removeAttribute('role')
-        },
-        add() {
-            this.tags.push(this.tag)
-        },
-        close(i) {
-            let tag = document.getElementsByClassName("tag-item")
-            tag[i].classList.add("transition-opacity")
-            tag[i].classList.add("duration-300")
-            tag[i].classList.add("ease-out")
-            tag[i].classList.add("opacity-0")
-            tag[i].classList.add("hidden")
         }
     }
 }

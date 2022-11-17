@@ -34,7 +34,7 @@ export default {
         } else {
             setTimeout(() => {
                 this.$store.commit("login/signOut")
-            }, 600000)
+            }, 3600000)
         }
     }
 }

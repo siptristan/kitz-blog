@@ -49,7 +49,7 @@
               {{ item.Title }}
             </td>
             <td class="py-4 px-6">
-              {{ item.Category ?? '-' }}
+              {{ item.CategoryName ?? '-' }}
             </td>
             <td class="py-4 px-6">
               {{ item.PhysicianName ?? '-' }}
@@ -68,7 +68,7 @@
             </td>
           </tr>
         </tbody>
-        <tbody>
+        <tbody v-else>
           <tr>
             <td colspan="4" class="text-center py-4">Data belum ada</td>
           </tr>
@@ -114,8 +114,8 @@
         blog: []
       }
     },
-    created() {
-      this.$store.dispatch("blog/getBlog", this.$store.state.login.userData.ParamedicID)
+    async created() {
+      await this.$store.dispatch("blog/getBlog", this.$store.state.login.userData.ParamedicID)
       this.showPage(1)
     },
     methods: {

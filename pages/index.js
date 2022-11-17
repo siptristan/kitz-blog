@@ -4,6 +4,7 @@ import ChartArea from '../components/admin/charts/ChartArea.vue'
 import Card from '../components/admin/Card.vue'
 // import Editor from '../components/admin/editor.vue'
 import ckeditorVue from '../components/admin/ckeditorVue.vue'
+import Pagination from '../components/pagination.vue'
 
 export {
     SideBar,
@@ -11,5 +12,6 @@ export {
     ChartArea,
     Card,
     // Editor,
-    ckeditorVue
+    ckeditorVue,
+    Pagination
 }

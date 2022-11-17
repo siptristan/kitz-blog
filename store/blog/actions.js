@@ -15,18 +15,22 @@ export default {
     async pagingData({ commit }, items) {
       let data = []
       let val = []
-      for (let i = 0; i < items.Retval.length; i++) {
-        val.push(items.Retval[i])
+      for (let i = 0; i < items.response.Retval.length; i++) {
+        val.push(items.response.Retval[i])
         let index = data.length
         if (index == 0) {
           index = 1
         }
-        if( val.length == 5 ) {
-          data.push({ page: index, value: val })
+        if( val.length == items.range ) {
+          if (data.length > 0) {
+            data.push({ page: data.length + 1, value: val })
+          } else {
+            data.push({ page: index, value: val })
+          }
           val = []
         }
-        if (i == items.Retval.length - 1) {
-          data.push({ page: index + 1, value: val })
+        if (i == items.response.Retval.length - 1 && i != 0 && val.length > 0) {
+            data.push({ page: index + 1, value: val })
           val = []
         }
       }
@@ -35,19 +39,25 @@ export default {
     async getBlog({ dispatch }, id) {
       await this.$axios.$get(`Blog/getdatablogphysician/${id}`, { progitemss: true })
       .then(res => {
-        dispatch("pagingData", {response: res, mutate: "setArticleData"})
+        dispatch("pagingData", {response: res, mutate: "setArticleData", range: 5})
       })
     },
     async getAllBlog({ dispatch }) {
       await this.$axios.$get("Blog/getallblog", { progress: true })
       .then(res => {
-        dispatch("pagingData", {response: res, mutate: "setAllBlog"})
+        dispatch("pagingData", {response: res, mutate: "setAllBlog", range: 8})
       })
     },
-    async getHompage({ commit }, id) {
+    async getHompage({ commit }) {
       await this.$axios.$get(`Blog/gethomepagedata`, { progress: true })
       .then(res => {
         commit("setAllBlog", res)
+      })
+    },
+    async getBlogById({ commit }, id) {
+      await this.$axios.$get(`Blog/getdatablogbyid/${id}`, { progress: true })
+      .then(res => {
+        commit("setItem", res.Retval)
       })
     },
     async getComment({ commit }, id) {

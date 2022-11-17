@@ -20,7 +20,7 @@ export default {
     if(this.loginState == true) {
       setTimeout(() => {
           this.$store.commit("login/signOut")
-      }, 600000)
+      }, 3600000)
     }
   }
 }
