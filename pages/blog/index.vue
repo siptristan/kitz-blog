@@ -8,7 +8,7 @@
       </div>
 
       <form>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-10/12 mx-auto">
+        <div class="flex gap-4 place-content-center w-10/12 mx-auto">
           <div class="w-full">
             <input 
               type="text" 
@@ -24,10 +24,14 @@
             v-model="itemSelect"
             @change="onSelect"
             >
-            <option value="">Or choose by category</option>
+            <option value="">Choose by category</option>
             <option v-for="(item, i) in category" :key="i" :value="item.CategoryName">{{ item.CategoryName }}</option>
           </select>
-        </div>
+          <div>
+            <button @click="reset" class="inline-flex w-fit items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">Reset</button>
+        
+          </div>
+          </div>
       </form>
 
       <div class="my-10">
@@ -36,7 +40,7 @@
             v-for="(item, i) in blog.value"
             :key="i"
             class="blog-items max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <img class="rounded-t-lg w-full" src="../../assets/images/search_bg.png" alt="">
+            <img class="rounded-t-lg w-full h-52" :src="`https://kitzdev.ottimo.one/appdata/blog/${item.Slug}/${item.MainPicture}`" alt="">
             <div class="blog-content p-5">
               <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">{{ item.Title }}</h5>
               <h4 class="hidden">{{ item.CategoryName }}</h4>
@@ -57,7 +61,26 @@
           </div>
         </div>
         <div v-if="blogs.length > 0" class="w-full h-fit flex justify-end py-4">
-          <Pagination :blogs="blogs" :page="blog.page" />
+          <!-- <Pagination :blogs="blogs" :page="blog.page" /> -->
+          <nav aria-label="Page navigation example">
+            <ul class="inline-flex items-center -space-x-px">
+              <li>
+                <a href="javascript:void(0)" @click="showPage(blog.page - 1)" class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                  <span class="sr-only">Previous</span>
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </a>
+              </li>
+              <li v-for="(item, i) in blogs" :key="i">
+                <a href="javascript:void(0)" @click="showPage(item.page)" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ item.page }}</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" @click="showPage(blog.page + 1)" class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                  <span class="sr-only">Next</span>
+                  <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
         <div v-else></div>
       </div>
@@ -133,6 +156,10 @@
             }
           })
         }
+      },
+      async reset() {
+        await this.$store.dispatch("blog/getAllBlog")
+        this.showPage(1)
       }
     }
   }

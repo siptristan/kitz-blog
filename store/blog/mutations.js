@@ -14,6 +14,9 @@ export default {
     setCategory(state, data){
       state.category = data
     },
+    setRelatedBlog(state, data){
+      state.relatedBlog = data
+    },
     editBlog(state, data) {
       state.articleList?.map( item => {
         if(item.page == data.page) {

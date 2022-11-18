@@ -3,6 +3,7 @@ export default () => ({
     allBlog: [],
     articleList: {},
     viewBlog: {},
+    relatedBlog: [],
     comment: [],
     category: []
   })

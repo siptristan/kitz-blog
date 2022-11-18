@@ -31,6 +31,21 @@ export default {
             type: Array,
             default: { page: 1 }
         }
+    },
+    created() {
+        this.showPage(1)
+    },
+    methods: {
+        showPage(i) {
+        if(i > 0 && i <= this.blogs.length) {
+          console.log(this.blogs)
+          this.blogs.map(item => {
+            if (item.page == i) {
+              this.blog = item
+            }
+          })
+        }
+      }
     }
 }
 </script>

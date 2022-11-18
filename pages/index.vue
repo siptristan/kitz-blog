@@ -15,7 +15,7 @@
           <div class="flex my-4">
             <img src="../assets/images/logo.png" class="w-12 mr-4 rounded-full" alt="">
             <div class="mt-1">
-              <p class="text-sm font-semibold">{{ blogs.NewBlog[0].ParamedicName }}</p>
+              <p class="text-sm font-semibold">{{ blogs.NewBlog[0].PhysicianName }}</p>
               <p class="text-xs font-semibold text-gray-400">{{ $moment(blogs.NewBlog[0].DatePublish).format('DD MMM yyyy') }}</p>
             </div>
           </div>
@@ -65,10 +65,10 @@
       <div class="mt-8 mb-8">
         <div class="flex place-content-between text-2xl font-semibold ">
           <p>Lastest News</p>
-          <a href="#"
+          <nuxt-link to="/blog"
             class="inline-flex items-center py-2 text-lg font-semibold text-center text-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             See All
-          </a>
+          </nuxt-link>
         </div>
         <div v-if="blogs != null && blogs.LstTopBlog != undefined" class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-4 mb-4">
           <div
@@ -103,10 +103,10 @@
       <div class="mt-8 mb-8">
         <div class="flex place-content-between text-2xl font-semibold ">
           <p>Popular Physician</p>
-          <a href="#"
+          <nuxt-link to="/physician"
             class="inline-flex items-center py-2 text-lg font-semibold text-center text-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             See All
-          </a>
+          </nuxt-link>
         </div>
         <div v-if="blogs != null && blogs.LstTopPhysician != undefined" class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-4 mb-4">
           <div

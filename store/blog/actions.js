@@ -45,7 +45,7 @@ export default {
     async getAllBlog({ dispatch }) {
       await this.$axios.$get("Blog/getallblog", { progress: true })
       .then(res => {
-        dispatch("pagingData", {response: res, mutate: "setAllBlog", range: 8})
+        dispatch("pagingData", {response: res, mutate: "setAllBlog", range: 5})
       })
     },
     async getHompage({ commit }) {
@@ -54,10 +54,14 @@ export default {
         commit("setAllBlog", res)
       })
     },
-    async getBlogById({ commit }, id) {
+    async getBlogById({ dispatch, commit }, id) {
       await this.$axios.$get(`Blog/getdatablogbyid/${id}`, { progress: true })
       .then(res => {
         commit("setItem", res.Retval)
+      })
+      await this.$axios.$get(`Blog/getrelatedblog/${id}`)
+      .then(resData => {
+        dispatch("pagingData", {response: resData, mutate: "setRelatedBlog", range: 3})
       })
     },
     async getComment({ commit }, id) {
@@ -114,6 +118,27 @@ export default {
               toast.addEventListener('mouseenter', this.$swal.stopTimer)
               toast.addEventListener('mouseleave', this.$swal.resumeTimer)
             }
+          })
+        }
+      })
+    },
+    async postComment({ dispatch }, data) {
+      await this.$axios.$post('Blog/insertcomment', data).then( res => {
+        if (res.result = true) {
+          this.$swal({
+            toast: true,
+            icon: 'success',
+            title: 'Comment Sent',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', this.$swal.stopTimer)
+              toast.addEventListener('mouseleave', this.$swal.resumeTimer)
+            }
+          }).then(() => {
+            dispatch("getBlogById", data.IDBlog)
           })
         }
       })
