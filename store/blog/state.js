@@ -5,6 +5,7 @@ export default () => ({
     viewBlog: {},
     relatedBlog: [],
     comment: [],
-    category: []
+    category: [],
+    dashboard: {}
   })
   

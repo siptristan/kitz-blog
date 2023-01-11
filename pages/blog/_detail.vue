@@ -16,7 +16,7 @@
     <div class="w-full">
       <img :src="`https://kitzdev.ottimo.one/appdata/blog/${detail.Slug}/${detail.MainPicture}`" class="w-full" alt="">
     </div>
-    <div class="content my-4" v-html="detail.Content"></div>
+    <span class="content my-4" v-html="detail.Content"></span>
     <div class="my-3">
       <p class="text-sm font-semibold">Tag</p>
       <div class="flex my-2">
@@ -28,9 +28,9 @@
     </div>
     <div class="my-8">
       <h2 class="text-2xl font-semibold my-4">Related Article</h2>
-      <div class="grid grid-cols-3">
+      <div v-if="related.length > 0" class="grid grid-cols-3">
         <div
-          v-for="(item, i) in relate.value"
+          v-for="(item, i) in related"
           :key="i"
           class="blog-items mx-2 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
           <img class="rounded-t-lg w-full" :src="`https://kitzdev.ottimo.one/appdata/blog/${item.Slug}/${item.MainPicture}`" alt="">
@@ -41,7 +41,7 @@
             <!-- <h4 class="hidden">{{ item.CategoryName }}</h4> -->
             <!-- <p class="text-content h-24 overflow-hidden mb-3 font-normal text-sm text-gray-700 dark:text-gray-400"
             v-html="item.Content"></p> -->
-            <NuxtLink :to="`/blog/${item.IDBlog}`">
+            <NuxtLink :to="`/blog/${item.Slug}`">
                 <p
                   class="inline-flex items-center py-2 text-sm font-semibold text-center text-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                   Read more
@@ -56,21 +56,22 @@
           </div>
         </div>
       </div>
-      <div v-if="related.length > 0" class="w-full h-fit flex justify-end py-4">
+      <div v-else class="flex justify-center"><p>Data tidak ditemukan</p></div>
+      <div v-if="related.length == 3 || index > 1" class="w-full h-fit flex justify-end py-4">
         <!-- <Pagination :blogs="blogs" :page="blog.page" /> -->
         <nav aria-label="Page navigation example">
           <ul class="inline-flex items-center -space-x-px">
             <li>
-              <a href="javascript:void(0)" @click="showPage(relate.page - 1)" class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+              <a href="javascript:void(0)" @click="showPage(index - 1)" class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                 <span class="sr-only">Previous</span>
                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
               </a>
             </li>
-            <li v-for="(item, i) in related" :key="i">
+            <!-- <li v-for="(item, i) in related" :key="i">
               <a href="javascript:void(0)" @click="showPage(item.page)" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ item.page }}</a>
-            </li>
+            </li> -->
             <li>
-              <a href="javascript:void(0)" @click="showPage(relate.page + 1)" class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+              <a href="javascript:void(0)" @click="showPage(index + 1)" class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                 <span class="sr-only">Next</span>
                 <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
               </a>
@@ -130,6 +131,7 @@
 </template>
 
 <script>
+// import 'infinite-scroll/dist/infinite-scroll.pkgd.js';
   export default {
     name: 'DetailPage',
     layout: 'Layout',
@@ -148,11 +150,20 @@
       return {
         tags: [],
         Comment: '',
-        relate: []
+        relate: [],
+        index: 1,
       }
     },
     async created() {
-      await this.$store.dispatch("blog/getBlogById", this.$route.params.detail)
+      const { ip } = await this.$axios.$get("http://api.ipify.org/?format=json")
+      await this.$store.dispatch("blog/getBlogById", { slug: this.$route.params.detail })
+      this.$store.dispatch("blog/getRelatedBlog", { id: this.detail.IDBlog, page: 1 })
+      const val = { 
+        IpUser: `${ip}`, 
+        IDBlog: this.detail.IDBlog, 
+        GCEventStatus: "KT11_001" 
+      }
+      this.$store.dispatch("blog/PostLog", val)
       this.tags = await this.detail.Tag.split(",") 
       this.showPage(1)
     },
@@ -166,16 +177,19 @@
         await this.$store.dispatch("blog/postComment", data)
       },
       showPage(i) {
-        if(i > 0 && i <= this.related.length) {
-          console.log(this.related)
-          this.related.map(item => {
-            if (item.page == i) {
-              this.relate = item
-            }
-          })
+        if (i > 0) {
+          this.index = i
+          this.$store.dispatch("blog/getBlogById", { slug: this.$route.params.detail, page: i })
         }
       },
     }
   }
-
 </script>
+<style scoped>
+/* .content h2 { font-size: 1.5em !important; font-weight: bolder !important}
+.content h3 { font-size: 1.17em !important; font-weight: bolder !important}
+.content h4 { font-size: 1em !important; font-weight: bolder !important}
+.content ul li { list-style-type: circle !important; margin-left: 1em !important;}
+.content ol li { list-style-type: decimal !important; margin-left: 1em !important;}
+.content p { font-size: 16px !important; margin-top: 1em !important; margin-bottom: 1em !important} */
+</style>

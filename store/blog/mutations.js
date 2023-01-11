@@ -17,11 +17,14 @@ export default {
     setRelatedBlog(state, data){
       state.relatedBlog = data
     },
+    setDashboard(state, data) {
+      state.dashboard = data
+    },
     editBlog(state, data) {
       state.articleList?.map( item => {
         if(item.page == data.page) {
           item.value.map(val => {
-            if(val.IDBlog == data.id) {
+            if(val.BlogID == data.id) {
               state.items = val
             }
           })
@@ -30,13 +33,13 @@ export default {
     },
     viewBlog(state, id) {
       state.allBlog?.LstTopBlog?.map( item => {
-        if(item.IDBlog == id) {
+        if(item.BlogID == id) {
           state.viewBlog = item
         }
       })
     },
     deleteBlog(state, id) {
-      let index = state.allBlog?.findIndex((item) => item.IDBlog == id)
+      let index = state.allBlog?.findIndex((item) => item.BlogID == id)
       state.allBlog?.splice(index, 1)
     }
   }

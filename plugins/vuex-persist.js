@@ -5,7 +5,8 @@ export default ({ store }) => {
   /* your options */
   storage: window.sessionStorage,
   reducer: state => ({
-    login: state.login
+    login: state.login,
+    physician: state.physician
   })
   }).plugin(store);
 }

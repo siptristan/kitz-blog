@@ -6,6 +6,13 @@
     font-family: 'Inter', sans-serif;
 }
 
+.content h2 { font-size: 1.5em !important; font-weight: bolder !important}
+.content h3 { font-size: 1.17em !important; font-weight: bolder !important}
+.content h4 { font-size: 1em !important; font-weight: bolder !important}
+.content ul li { list-style-type: circle !important; margin-left: 1em !important;}
+.content ol li { list-style-type: decimal !important; margin-left: 1em !important;}
+.content p { font-size: 16px !important; margin-top: 1em !important; margin-bottom: 1em !important}
+
 /* body {
     background: #F3F2F3;
 } */

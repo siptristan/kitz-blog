@@ -147,7 +147,7 @@ export default {
             isSaved: false,
             drafted: true,
             published: false,
-            IDBlog: null,
+            BlogID: null,
             imgName: '',
             title: '',
             imgBase64: '',

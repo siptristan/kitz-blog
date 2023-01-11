@@ -34,6 +34,7 @@ export default {
     { src: '~/plugins/vuex-persist.js', ssr: false },
     { src: '~/plugins/ckeditor.js', mode: 'client', ssr: false },
     { src: '~/plugins/flowbite.js', mode: 'client', ssr: false },
+    { src: '~/plugins/vue-infinitescroll.js', mode: 'client', ssr: false },
     // { src: '~/plugins/sweetalert.js'},
   ],
 
@@ -61,7 +62,7 @@ export default {
 
   axios: {
     // proxy: true
-    baseURL: "https://kitzdev.ottimo.one/api",
+    // baseURL: "https://kitzdev.ottimo.one/api",
     proxyHeaders: false,
     credentials: false,
   },

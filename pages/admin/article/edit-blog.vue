@@ -160,7 +160,7 @@ export default {
             isSaved: false,
             drafted: true,
             published: false,
-            IDBlog: null,
+            BlogID: null,
             imgName: '',
             title: '',
             imgBase64: '',
@@ -183,7 +183,7 @@ export default {
         let categoryLabel = document.getElementsByClassName('category-opt-label')
         let category = document.getElementsByClassName('category-opt')
         if (this.items != null) {
-            this.IDBlog = this.items.IDBlog
+            this.BlogID = this.items.BlogID
             this.title = this.items.Title
             this.editorData = this.items.Content
             let categoryVal = this.items.CategoryName.split(", ")
@@ -240,7 +240,7 @@ export default {
                     }
 
                     let data = {
-                        IDBlog: this.IDBlog,
+                        BlogID: this.BlogID,
                         Title: this.title,
                         Content: this.editorData,
                         GCBlogStatus: 'KT009^003',
@@ -270,9 +270,9 @@ export default {
             }
 
             let data = {}
-            if (this.IDBlog > 0) {
+            if (this.BlogID > 0) {
                 let data = {
-                    IDBlog: this.IDBlog,
+                    BlogID: this.BlogID,
                     Title: this.title,
                     Content: this.editorData,
                     GCBlogStatus: 'KT009^001',

@@ -3,10 +3,10 @@
     <div class="w-11/12 mx-auto mt-8">
       <div class="grid grid-cols-1 md:grid-cols-2  gap-4">
         <div v-if="blogs != null && blogs.NewBlog != undefined" class="">
-          <img :src="`https://kitzdev.ottimo.one/appdata/blog/${blogs.NewBlog[0].Slug}/${blogs.NewBlog[0].MainPicture}`" class="h-52 md:h-full rounded" alt="">
+          <img :src="`https://kitzdev.ottimo.one/appdata/blog/${blogs.NewBlog[0].Slug}/${blogs.NewBlog[0].MainPicture}`" class="h-52 md:h-full rounded-xl drop-shadow-xl" alt="">
         </div>
         <div v-else class="">
-          <img src="../assets/images/search_bg.png" class="w-full h-52 md:h-full rounded" alt="">
+          <img src="../assets/images/search_bg.png" class="w-full h-52 md:h-full rounded-xl drop-shadow-xl" alt="">
         </div>
         <div v-if="blogs != null && blogs.NewBlog != undefined" class="my-2 md:my-12">
           <div class="title text-3xl font-semibold">
@@ -22,7 +22,7 @@
           <div class="text-content h-24 overflow-hidden text-sm font-normal text-gray-500 text-justify mt-4" v-html="blogs.NewBlog[0].Content">
           </div>
           <div class="mt-4">
-            <NuxtLink :to="`/blog/${blogs.NewBlog[0].IDBlog}`">
+            <NuxtLink :to="`/blog/${blogs.NewBlog[0].Slug}`">
               <p
                 class="inline-flex items-center py-2 text-md font-semibold text-center text-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Read more
@@ -74,12 +74,12 @@
           <div
             v-for="(item, i) in blogs.LstTopBlog"
             :key="i"
-            class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-            <img class="w-full h-40" :src="`https://kitzdev.ottimo.one/appdata/blog/${item.Slug}/${item.MainPicture}`" alt="">
+            class="max-w-sm bg-white rounded-xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+            <img class="w-full h-40 rounded-tr-xl rounded-tl-xl" :src="`https://kitzdev.ottimo.one/appdata/blog/${item.Slug}/${item.MainPicture}`" alt="">
             <div class="p-5">
               <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">{{ item.Title }}</h5>
               <p class="text-content h-24 overflow-hidden mb-3 font-normal text-sm text-gray-700 dark:text-gray-400" v-html="item.Content"></p>
-              <NuxtLink :to="`/blog/${item.IDBlog}`">
+              <NuxtLink :to="`/blog/${item.Slug}`">
                 <p
                   class="inline-flex items-center py-2 text-sm font-semibold text-center text-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                   Read more
@@ -115,7 +115,7 @@
             class="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <div class="flex flex-col items-center py-10">
               <img class="mb-3 w-24 h-24 rounded-full shadow-lg" :src="item.PhotoUrl" alt="Bonnie image">
-              <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ item.PhysicianName }}</h5>
+              <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white text-center">{{ item.PhysicianName }}</h5>
               <span class="text-sm text-gray-500 dark:text-gray-400">{{ item.SpecialtyName }}</span>
               <div class="flex mt-4 space-x-3 md:mt-6">
                 <nuxt-link :to="`/physician/${item.PhysicianID}`"
@@ -134,6 +134,7 @@
 </template>
 
 <script>
+  // import * as fs from 'fs';
   export default {
     name: 'IndexPage',
     layout: 'Layout',
@@ -149,25 +150,20 @@
     },
     async created() {
       await this.$store.dispatch("blog/getHompage")
-      // let test = (val) => {
-      //   if (val != null) {
-      //     val += 1
-      //     localStorage.setItem("test", val)
-      //   } else {
-      //     this.count += 1
-      //     localStorage.setItem("test", this.count)
-      //   }
+    },
+    methods: {
+      // userVisit() {
+      //   var dict = {"one" : [15, 4.5],
+      //   "two" : [34, 3.3],
+      //   "three" : [67, 5.0],
+      //   "four" : [32, 4.1]};
+
+      //   var dictstring = JSON.stringify(dict);
+
+      //   fs.writeFile("thing.json", dictstring, function(err, result) {
+      //       if(err) console.log('error', err);
+      //   });
       // }
-      // let startCount = () => {
-      //   setInterval(() => {
-      //     test(localStorage.getItem("test"))
-      //     //console.log(localStorage.getItem("test"))
-      //   }, 1000)
-      // }
-      // startCount()
-      // setTimeout(() => {
-        
-      // })
     }
   }
 

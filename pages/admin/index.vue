@@ -11,12 +11,12 @@
       <div class="card-body mt-4">
         <div class="content flex justify-center items-center">
           <div class="text-center">
-            <p class="text-4xl">15</p>
+            <p class="text-4xl">{{ dashboard?.published }}</p>
             <p class="text-xs font-normal">published</p>
           </div>
           <hr class="rotate-90 mx-4 border-1 w-10 border-slate-400">
           <div class="text-center">
-            <p class="text-4xl">10</p>
+            <p class="text-4xl">{{ dashboard?.drafted }}</p>
             <p class="text-xs font-normal">Unpublished</p>
           </div>
         </div>
@@ -138,9 +138,14 @@
         },
       }
     },
-    // mounted() {
-    //   location.reload()
-    // }
+    computed: {
+      dashboard () {
+        return this.$store.state.blog.dashboard
+      }
+    },
+    async created() {
+      await this.$store.dispatch("blog/getDashboard", this.$store.state.login.userData.ParamedicID)
+    }
   }
 
 </script>

@@ -24,6 +24,29 @@
         </div>
         <div class="lg:w-4/12 w-full relative">
             <div class="w-full h-fit lg:flex-col md:justify-between justify-center items-center lg:px-5 lg:sticky">
+                <div class="md:w-full lg:w-10/12 sm:w-full h-56 bg-white rounded-md mb-3">
+                    <div class="w-full h-12 px-3 py-3"><p class="text-md">Publish</p></div>
+                    <hr>
+                    <div class="h-32 px-3 py-3">
+                        <div class="flex justify-start items-center mb-3">
+                            <p class="mr-2 text-sm">Status :</p>
+                            <p class="font-semibold text-sm">{{ drafted == true ? 'Draft' : 'Publish' }}</p>
+                        </div>
+                        <div class="flex justify-start items-center mb-3">
+                            <p class="mr-2 text-sm">Publish schedule :</p>
+                            <input type="date" class="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        </div>
+                        <div class="flex items-center">
+                            <input checked id="featured" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="checked-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Featured</label>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="w-full h-12 bg-slate-200 flex justify-between items-center px-3">
+                        <button class="w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white" @click="publish">Publish</button>
+                        <!-- <input type="button" :class="`w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white`" value="Draft"> -->
+                    </div>
+                </div>
                 <div class="md:w-full lg:w-10/12 sm:w-full h-48 bg-white rounded-md mb-3">
                     <div class="w-full h-12 px-3 py-3"><p class="text-md">Categories</p></div>
                     <hr>
@@ -76,32 +99,13 @@
                             <button @click="add" class="ml-2 w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white">Add</button>
                         </div>
                         <div id="tags" class="w-full h-fit mt-3">
-                            <span v-for="(item, i) in tags" :key="i" class="tag-item inline-flex items-center py-1 px-2 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-800">
+                            <span v-for="(item, i) in tags" :key="i" class="mt-2 tag-item inline-flex items-center py-1 px-2 mr-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-200 dark:text-blue-800">
                             {{ tags[i] }}
                             <button type="button" @click="close(i)" class="inline-flex items-center p-0.5 ml-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-300 dark:hover:text-blue-900">
                                 <svg aria-hidden="true" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                             </button>
                             </span>
                         </div>
-                    </div>
-                </div>
-                <div class="md:w-full lg:w-10/12 sm:w-full h-48 bg-white rounded-md mb-3">
-                    <div class="w-full h-12 px-3 py-3"><p class="text-md">Publish</p></div>
-                    <hr>
-                    <div class="h-24 px-3 py-3">
-                        <div class="flex justify-start items-center mb-3">
-                            <p class="mr-2 text-sm">Status :</p>
-                            <p class="font-semibold text-sm">{{ drafted == true ? 'Draft' : 'Publish' }}</p>
-                        </div>
-                        <div class="flex justify-start items-center mb-3">
-                            <p class="mr-2 text-sm">Publish schedule :</p>
-                            <input type="date" class="bg-gray-50 h-8 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="w-full h-12 bg-slate-200 flex justify-between items-center px-3">
-                        <button class="w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white" @click="publish">Publish</button>
-                        <!-- <input type="button" :class="`w-20 h-fit rounded-md bg-blue-500 text-sm py-2 text-white`" value="Draft"> -->
                     </div>
                 </div>
             </div>
@@ -169,7 +173,7 @@
                         </div>
                         <!-- Modal footer -->
                         <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                            <button @click="closeModalCategory" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Save</button>
+                            <button @click="addCategory" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add</button>
                             <button @click="closeModalCategory" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancel</button>
                         </div>
                     </div>
@@ -187,7 +191,7 @@ export default {
             isSaved: false,
             drafted: true,
             published: false,
-            IDBlog: null,
+            BlogID: null,
             imgName: '',
             title: '',
             imgBase64: '',
@@ -195,6 +199,7 @@ export default {
             categoryID: 0,
             physicianID: 0,
             editorData: '',
+            isFeatured: false,
             editorConfig: {
                 readOnly: false,
                 image2_maxSize: {
@@ -238,6 +243,10 @@ export default {
                 confirmButtonText: 'Yes, proceed'
             }).then(res => {
                 if (res.isConfirmed == true) {
+                    let isFeatured = document.getElementById("featured")
+                    if (isFeatured.checked == true) {
+                        this.isFeatured = true
+                    }
                     let categoryOpt = document.getElementsByClassName('category-opt')
                     let temp = [];
                     for (let i = 0; i < categoryOpt.length; i++) {
@@ -259,7 +268,8 @@ export default {
                         Category: this.categoryID,
                         MainPicture: base64[1],
                         PhysicianID: this.$store.state.login.userData.ParamedicID,
-                        Tag: this.tags
+                        Tag: this.tags,
+                        IsFeatured: this.isFeatured
                     }
                     document.getElementById('preview').src = ''
                     this.$store.dispatch('blog/publish', data)
@@ -267,6 +277,10 @@ export default {
             })
         },
         draft() {
+            let isFeatured = document.getElementById("featured")
+            if (isFeatured.checked == true) {
+                this.isFeatured = true
+            }
             let categoryOpt = document.getElementsByClassName('category-opt')
             for (let i = 0; i < categoryOpt.length; i++) {
                 if(categoryOpt[i].checked) {
@@ -288,7 +302,8 @@ export default {
                 MainPicture: base64[1],
                 CategoryID: this.categoryID,
                 PhysicianID: this.$store.state.login.userData.ParamedicID,
-                Tag: this.tags
+                Tag: this.tags, 
+                IsFeatured: this.isFeatured
             }
 
             document.getElementById('preview').src = ''
@@ -344,6 +359,9 @@ export default {
             tag[i].classList.add("ease-out")
             tag[i].classList.add("opacity-0")
             tag[i].classList.add("hidden")
+        },
+        async addCategory() {
+            await this.$store.dispatch("blog/postCategory", {CategoryName: this.category})
         }
     }
 }
