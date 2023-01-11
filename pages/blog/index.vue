@@ -14,7 +14,7 @@
               type="text" 
               id="simple-search"
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Enter Title Blog / Article ..." required=""
+              placeholder="Enter Title Blog / Article ..."
               v-model="itemInput"
               @keyup="setItem()"
               >
@@ -29,7 +29,6 @@
           </select>
           <div>
             <button @click="reset" class="inline-flex w-fit items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">Reset</button>
-        
           </div>
           </div>
       </form>
@@ -105,7 +104,7 @@
     methods: {
       infiniteHandler($state) {
         this.$axios.$get(
-          `https://localhost:5002/api/Blog/getallblog/page=${this.index}`
+          `https://kitzdev.ottimo.one/api/Blog/getallblog/page=${this.index}`
         ).then(res => {
           if (res.Retval.length) {
             this.index += 1;
@@ -154,8 +153,7 @@
         }
       },
       async reset() {
-        await this.$store.dispatch("blog/getAllBlog")
-        await this.showPage(1)
+        await this.infiniteHandler()
       }
     }
   }
