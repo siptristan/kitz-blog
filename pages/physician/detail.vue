@@ -22,15 +22,10 @@
               <h2 class="text-lg font-semibold text-center mb-4">Jadwal Praktek</h2>
               <div class="grid grid-cols-2 md:grid-cols-3 gap-4 justify-center my-4">
 
-                <a v-for="(list, i) in item.LstPhysicianSchedule" :key="i" href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ list.DayNumber }}</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">{{ list.ScheduleName }}</p>
+                <a v-for="(list, i) in item.LstPhysicianSchedule" :key="i" href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md transition ease-in-out delay-150 hover:drop-shadow-lg hover:-translate-y-2 hover:bg-blue-400 group/cards dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white transition ease-in-out delay-150 group-hover/cards:text-white">{{ list.DayNumber }}</h5>
+                    <p class="font-normal text-gray-700 dark:text-gray-400 transition ease-in-out delay-150 group-hover/cards:text-white">{{ list.ScheduleName }}</p>
                 </a>
-
-                <!-- <div v-for="(list, i) in item.LstPhysicianSchedule" :key="i" class="text-center rounded-lg filter drop-shadow-xl mb-3">
-                  <h3 class="text-lg font-semibold">{{ list.DayNumber }}</h3>
-                  <p class="text-base font-normal">{{ list.ScheduleName }}</p>
-                </div> -->
               </div>
             </div>
           </li>

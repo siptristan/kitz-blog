@@ -1,9 +1,9 @@
 <template>
-  <nav class="bg-white w-full h-16">
+  <nav class="bg-white w-full h-16 mt-2">
     <div class="flex w-10/12 place-content-between mx-auto pt-3">
-      <nuxt-link to="/"><img src="../assets/images/logo.png" class="w-11 mt-2" alt=""></nuxt-link>
+      <nuxt-link to="/" class="hidden md:block"><img src="../assets/images/logo.png" class="w-11 mt-2" alt=""></nuxt-link>
 
-      <button class="block lg:hidden" type="button">
+      <button class="block md:hidden" type="button">
         <img src="../assets/icons/menu-button.svg" v-on:click="toggleNavbar()" alt="" />
 
       </button>

@@ -11,7 +11,7 @@
       <div
         v-for="(item, $index) in list"
         :key="$index"
-        class="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+        class="w-full max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 transition ease-in-out delay-150 hover:drop-shadow-lg hover:-translate-y-2">
         <div class="flex flex-col items-center py-10 px-5">
           <img class="mb-3 w-24 h-24 rounded-full shadow-lg" :src="item.PhotoUrl ?? '../../assets/images/profile.jpg'" alt="Bonnie image">
           <h5 class="h-16 mb-1 text-xl font-medium text-gray-900 dark:text-white text-center">{{ item.PhysicianName }}</h5>

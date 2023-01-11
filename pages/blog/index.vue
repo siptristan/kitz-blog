@@ -34,11 +34,11 @@
       </form>
 
       <div class="my-10">
-        <div v-if="list.length > 0" class="container grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div v-if="list.length > 0" class="container grid grid-cols-1 md:grid-cols-4 justify-center gap-6">
           <div
             v-for="(item, $index) in list"
             :key="$index"
-            class="blog-items max-w-sm bg-white rounded-2xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 transition ease-in-out delay-150 hover:drop-shadow-lg hover:-translate-y-2">
+            class="mx-auto md:mx-0 md:col-span-2 lg:col-span-1 blog-items max-w-sm bg-white rounded-2xl border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 transition ease-in-out delay-150 hover:drop-shadow-lg hover:-translate-y-2">
             <NuxtLink :to="`/blog/${item.Slug}`">
             <img class="rounded-t-lg w-full h-52" :src="`https://kitzdev.ottimo.one/appdata/blog/${item.Slug}/${item.MainPicture}`" alt="">
             <div class="blog-content p-5">
@@ -61,7 +61,7 @@
         </div>
         <div v-else class="flex justify-center"><p>Data tidak ditemukan</p></div>
       </div>
-      <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+      <infinite-loading id="infinite-elm" @infinite="infiniteHandler"></infinite-loading>
     </div>
 </template>
 
@@ -86,19 +86,13 @@
         itemInput: '',
         itemSelect: '',
         index: 1,
-        list: []
+        list: [],
+        infiniteId: +new Date(),
       }
     },
     async created() {
-      // const CryptoJS = require('crypto-js')
-      
-      // var encryptedAES = CryptoJS.AES.encrypt("Message", "My Secret Passphrase");
-      // var decryptedBytes = CryptoJS.AES.decrypt(encryptedAES, "My Secret Passphrase");
-      // var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);
-      // console.log(encryptedAES.toString())
     },
     async mounted() {
-      // await this.showPage(1)
       await this.$store.dispatch("blog/getCategory")
     },
     methods: {
@@ -116,6 +110,7 @@
         });
       },
       setItem() {
+        document.querySelector("#infinite-elm").classList.add("hidden")
         let filter = this.itemInput.toUpperCase()
         let items = document.getElementsByClassName("blog-items")
         
@@ -146,12 +141,13 @@
           }
         }
       },
-      showPage(i) {
-        if (i > 0) {
-          this.index = i
-          this.$store.dispatch("blog/getAllBlog", this.index)
-        }
-      },
+      // async showPage(i) {
+      //   if (i > 0) {
+      //     this.index = i
+      //     await this.$store.dispatch("blog/getAllBlog", this.index)
+      //     this.list = this.blogs
+      //   }
+      // },
       async reset() {
         await this.infiniteHandler()
       }

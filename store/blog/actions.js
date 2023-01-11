@@ -42,14 +42,14 @@ export default {
         dispatch("pagingData", {response: res, mutate: "setArticleData", range: 5})
       })
     },
-    // async getAllBlog({ commit }, i) {
-    //   await this.$axios.$get(`https://localhost:5002/api/Blog/getallblog/page=${i}`, { progress: true })
-    //   .then(res => {
-    //     // console.log(res.Retval)
-    //     // dispatch("pagingData", {response: res, mutate: "setAllBlog", range: 5})
-    //     commit("setAllBlog", res.Retval)
-    //   })
-    // },
+    async getAllBlog({ commit }, i) {
+      await this.$axios.$get(`https://kitzdev.ottimo.one/api/Blog/getallblog/page=${i}`, { progress: true })
+      .then(res => {
+        // console.log(res.Retval)
+        // dispatch("pagingData", {response: res, mutate: "setAllBlog", range: 5})
+        commit("setAllBlog", res.Retval)
+      })
+    },
     async getHompage({ commit }) {
       await this.$axios.$get(`https://kitzdev.ottimo.one/api/Blog/gethomepagedata`, { progress: true })
       .then(res => {

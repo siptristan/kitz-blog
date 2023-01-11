@@ -38,9 +38,6 @@
             <h5 class="mb-1 text-lg font-bold tracking-tight text-gray-900 dark:text-white">{{ item.Title }}</h5>
             <p class="text-gray-700 text-sm font-semibold mb-1">{{ item.CategoryName }}</p>
             <p class="text-sm h-24 overflow-hidden" v-html="item.Content"></p>
-            <!-- <h4 class="hidden">{{ item.CategoryName }}</h4> -->
-            <!-- <p class="text-content h-24 overflow-hidden mb-3 font-normal text-sm text-gray-700 dark:text-gray-400"
-            v-html="item.Content"></p> -->
             <NuxtLink :to="`/blog/${item.Slug}`">
                 <p
                   class="inline-flex items-center py-2 text-sm font-semibold text-center text-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
